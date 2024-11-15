@@ -415,6 +415,7 @@ export default function ImageUploadScreen() {
     });
 
     if (!result.canceled) {
+      console.log("Metadata EXIF:", result.assets[0].exif);
       setSelectedImage(result.assets[0].uri);
       await showImageDetails(result.assets[0].uri); // Obtener detalles de la imagen seleccionada
     }
@@ -438,6 +439,7 @@ export default function ImageUploadScreen() {
     });
 
     if (!result.canceled) {
+      console.log("Metadata EXIF:", result.assets[0]);
       setSelectedImage(result.assets[0].uri);
       await showImageDetails(result.assets[0].uri); // Obtener detalles de la imagen tomada
     }
@@ -490,27 +492,19 @@ export default function ImageUploadScreen() {
       return;
     }
 
-    // Redimensionar la imagen para ajustarla a 120 ppi
-    const { width, height } = await ImageManipulator.manipulateAsync(
-      selectedImage,
-      [],
-      { compress: 1, format: ImageManipulator.SaveFormat.JPEG },
-    );
-
-    // Calcular el nuevo tamaño para 120 ppi (suponiendo que la imagen original es a 72 ppi)
-    const newWidth = Math.floor(width * (120 / 72));
-    const newHeight = Math.floor(height * (120 / 72));
+    //PROBAR BAJAR RESOLUCION Y SUBIR CONTRASTE
+    //BORRAR METADATA CON METADATA REACT-NATIVE IMAGE.
 
     // Redimensionar la imagen
     const resizedImage = await ImageManipulator.manipulateAsync(
       selectedImage,
-      [{ resize: { width: newWidth, height: newHeight } }],
+      [{ resize: { width: 130, height: 224 } }],
       {
-        compress: 0.5, // Ajustar el nivel de compresión
         format: ImageManipulator.SaveFormat.JPEG,
       },
     );
 
+    showImageDetails(resizedImage.uri);
     const formData = new FormData();
     const image: ImagePickerResult = {
       uri: resizedImage.uri,
