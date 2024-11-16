@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import CameraView from "./src/Screens/CameraView/CameraView";
@@ -8,21 +8,34 @@ import GroupScreen from "./src/Screens/GroupScreen/GroupScreen";
 import ChatGameScreen from "./src/Screens/ChatGameScreen/ChatGameScreen";
 import HomeScreen from "./src/Screens/HomeScreen/HomeScreen";
 import theme from "./config/theme";
+// import Constants from "expo-constants";
 
 const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>
+      <StatusBar
+        barStyle="light-content" // Cambia el texto a blanco
+      />
       <Tab.Navigator
         screenOptions={{
           tabBarStyle: {
-            backgroundColor: theme.colors.primary,
+            backgroundColor: theme.colors.secondary,
             height: 80, // Aumenta la altura de la Tab Bar
-            paddingTop: 20,
+            paddingTop: 10,
+            paddingBottom: 10,
           },
+
           // Estilo de la barra
-          tabBarActiveTintColor: theme.colors.secondary, // Color activo
+          tabBarActiveTintColor: theme.colors.primary, // Color activo
           tabBarInactiveTintColor: theme.colors.white, // Color inactivo
+          tabBarItemStyle: {
+            // Estilo de los íconos cuando se hace clic
+            borderRadius: 30, // Radio del área de toque (circular)
+            height: 50,
+            paddingTop: 8,
+            paddingHorizontal: 30, // Tamaño horizontal de la área de toque
+          },
         }}
       >
         <Tab.Screen
@@ -47,8 +60,8 @@ export default function App() {
               </View>
             ),
             tabBarLabel: "",
-            tabBarIcon: () => (
-              <Ionicons name="camera" size={24} color="white" />
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="home" size={24} color={color} />
             ),
           }}
         />
@@ -58,8 +71,8 @@ export default function App() {
           options={{
             headerShown: false,
             tabBarLabel: "",
-            tabBarIcon: () => (
-              <Ionicons name="camera" size={24} color="white" />
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="home" size={24} color={color} />
             ),
           }}
         />
@@ -69,9 +82,9 @@ export default function App() {
           options={{
             headerShown: false,
             tabBarLabel: "",
-            tabBarIcon: () => (
+            tabBarIcon: ({ color }) => (
               <View style={styles.cameraButtonContainer}>
-                <Ionicons name="camera" size={54} color="white" />
+                <Ionicons name="camera" size={54} color={color} />
               </View>
             ),
           }}
@@ -82,8 +95,8 @@ export default function App() {
           options={{
             headerShown: false,
             tabBarLabel: "",
-            tabBarIcon: () => (
-              <Ionicons name="camera" size={24} color="white" />
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="home" size={24} color={color} />
             ),
           }}
         />
@@ -93,8 +106,8 @@ export default function App() {
           options={{
             headerShown: false,
             tabBarLabel: "",
-            tabBarIcon: () => (
-              <Ionicons name="camera" size={24} color="white" />
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="home" size={24} color={color} />
             ),
           }}
         />
@@ -125,16 +138,17 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     flexDirection: "row", // Hace que los hijos estén en columnas
-    height: 100, // Altura del header
-    backgroundColor: "#6200EE", // Color de fondo
+    height: 110, // Altura del header
+    backgroundColor: theme.colors.black, // Color de fondo
     alignItems: "center", // Centra el contenido verticalmente
+    // paddingTop: Constants.statusBarHeight,
   },
   firstColumn: {
     width: 100, // Ancho fijo de la primera columna
     height: 100, // Altura fija
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#3700B3", // Color para distinguir
+    backgroundColor: theme.colors.black, // Color para distinguir
   },
   secondColumn: {
     flex: 1, // Ocupa el resto del espacio
