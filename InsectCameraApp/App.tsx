@@ -8,9 +8,34 @@ import GroupScreen from "./src/Screens/GroupScreen/GroupScreen";
 import ChatGameScreen from "./src/Screens/ChatGameScreen/ChatGameScreen";
 import HomeScreen from "./src/Screens/HomeScreen/HomeScreen";
 import theme from "./config/theme";
+import { createStackNavigator } from "@react-navigation/stack";
 // import Constants from "expo-constants";
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
+// Pantallas para cada botón
+const Screen1 = () => (
+  <View style={styles.screen}>
+    <Text>Pantalla 1</Text>
+  </View>
+);
+const Screen2 = () => (
+  <View style={styles.screen}>
+    <Text>Pantalla 2</Text>
+  </View>
+);
+const Screen3 = () => (
+  <View style={styles.screen}>
+    <Text>Pantalla 3</Text>
+  </View>
+);
+const Screen4 = () => (
+  <View style={styles.screen}>
+    <Text>Pantalla 4</Text>
+  </View>
+);
+
 export default function App() {
   return (
     <NavigationContainer>
@@ -25,7 +50,6 @@ export default function App() {
             paddingTop: 10,
             paddingBottom: 10,
           },
-
           // Estilo de la barra
           tabBarActiveTintColor: theme.colors.primary, // Color activo
           tabBarInactiveTintColor: theme.colors.white, // Color inactivo
@@ -40,7 +64,7 @@ export default function App() {
       >
         <Tab.Screen
           name="Home"
-          component={HomeScreen}
+          component={HomeScreen as any}
           options={{
             header: () => (
               <View style={styles.headerContainer}>
@@ -112,6 +136,11 @@ export default function App() {
           }}
         />
       </Tab.Navigator>
+      {/* Pantallas adicionales */}
+      <Stack.Screen name="Screen1" component={Screen1} />
+      <Stack.Screen name="Screen2" component={Screen2} />
+      <Stack.Screen name="Screen3" component={Screen3} />
+      <Stack.Screen name="Screen4" component={Screen4} />
     </NavigationContainer>
   );
 }
@@ -164,5 +193,11 @@ const styles = StyleSheet.create({
     color: "#fff", // Texto blanco
     fontSize: 18, // Tamaño de texto
     fontWeight: "bold", // Negrita
+  },
+  screen: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#e8eaf6",
   },
 });
