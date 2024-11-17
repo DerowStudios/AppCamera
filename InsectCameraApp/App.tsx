@@ -36,6 +36,41 @@ const Screen4 = () => (
   </View>
 );
 
+function HomeStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen as any}
+        options={{
+          header: () => (
+            <View style={styles.headerContainer}>
+              {/* Primera columna */}
+              <View style={styles.firstColumn}>
+                <Text style={styles.headerText}>Logo</Text>
+              </View>
+              {/* Segunda columna dividida en dos filas */}
+              <View style={styles.secondColumn}>
+                <View style={styles.secondRow}>
+                  <Text style={styles.headerText}>Fila 1</Text>
+                </View>
+                <View style={styles.secondRow}>
+                  <Text style={styles.headerText}>Fila 2</Text>
+                </View>
+              </View>
+            </View>
+          ),
+          // headerShown: false,
+        }}
+      />
+      <Stack.Screen name="Screen1" component={Screen1} />
+      <Stack.Screen name="Screen2" component={Screen2} />
+      <Stack.Screen name="Screen3" component={Screen3} />
+      <Stack.Screen name="Screen4" component={Screen4} />
+    </Stack.Navigator>
+  );
+}
+
 export default function App() {
   return (
     <NavigationContainer>
@@ -64,26 +99,10 @@ export default function App() {
       >
         <Tab.Screen
           name="Home"
-          component={HomeScreen as any}
+          component={HomeStack}
           options={{
-            header: () => (
-              <View style={styles.headerContainer}>
-                {/* Primera columna */}
-                <View style={styles.firstColumn}>
-                  <Text style={styles.headerText}>Logo</Text>
-                </View>
-                {/* Segunda columna dividida en dos filas */}
-                <View style={styles.secondColumn}>
-                  <View style={styles.secondRow}>
-                    <Text style={styles.headerText}>Fila 1</Text>
-                  </View>
-                  <View style={styles.secondRow}>
-                    <Text style={styles.headerText}>Fila 2</Text>
-                  </View>
-                </View>
-              </View>
-            ),
             tabBarLabel: "",
+            headerShown: false,
             tabBarIcon: ({ color }) => (
               <Ionicons name="home" size={24} color={color} />
             ),
@@ -95,6 +114,7 @@ export default function App() {
           options={{
             headerShown: false,
             tabBarLabel: "",
+
             tabBarIcon: ({ color }) => (
               <Ionicons name="home" size={24} color={color} />
             ),
