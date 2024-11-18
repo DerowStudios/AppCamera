@@ -1,14 +1,26 @@
-import { View, StyleSheet, Text, StatusBar } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import CameraView from "./src/Screens/CameraView/CameraView";
-import { Ionicons } from "@expo/vector-icons";
-import CollectionScreen from "./src/Screens/CollectionScreen/CollectionScreen";
-import GroupScreen from "./src/Screens/GroupScreen/GroupScreen";
-import ChatGameScreen from "./src/Screens/ChatGameScreen/ChatGameScreen";
-import HomeScreen from "./src/Screens/HomeScreen/HomeScreen";
+import {
+  View,
+  Text,
+  StatusBar,
+  NavigationContainer,
+  createBottomTabNavigator,
+  createStackNavigator,
+  Ionicons,
+} from "./src/libs";
+import {
+  CameraView,
+  CollectionScreen,
+  GroupScreen,
+  ChatGameScreen,
+  HomeScreen,
+} from "./src/Screens";
 import theme from "./config/theme";
-import { createStackNavigator } from "@react-navigation/stack";
+
+import {
+  PlayerHeaderStyles,
+  CameraButtonMenu,
+  LateralMenu,
+} from "./src/Styles";
 // import Constants from "expo-constants";
 
 const Tab = createBottomTabNavigator();
@@ -16,22 +28,22 @@ const Stack = createStackNavigator();
 
 // Pantallas para cada botón
 const Screen1 = () => (
-  <View style={styles.screen}>
+  <View style={LateralMenu.screenDisplay}>
     <Text>Pantalla 1</Text>
   </View>
 );
 const Screen2 = () => (
-  <View style={styles.screen}>
+  <View style={LateralMenu.screenDisplay}>
     <Text>Pantalla 2</Text>
   </View>
 );
 const Screen3 = () => (
-  <View style={styles.screen}>
+  <View style={LateralMenu.screenDisplay}>
     <Text>Pantalla 3</Text>
   </View>
 );
 const Screen4 = () => (
-  <View style={styles.screen}>
+  <View style={LateralMenu.screenDisplay}>
     <Text>Pantalla 4</Text>
   </View>
 );
@@ -44,18 +56,18 @@ function HomeStack() {
         component={HomeScreen as any}
         options={{
           header: () => (
-            <View style={styles.headerContainer}>
+            <View style={PlayerHeaderStyles.headerContainer}>
               {/* Primera columna */}
-              <View style={styles.firstColumn}>
-                <Text style={styles.headerText}>Logo</Text>
+              <View style={PlayerHeaderStyles.firstColumn}>
+                <Text style={PlayerHeaderStyles.headerText}>Logo</Text>
               </View>
               {/* Segunda columna dividida en dos filas */}
-              <View style={styles.secondColumn}>
-                <View style={styles.secondRow}>
-                  <Text style={styles.headerText}>Fila 1</Text>
+              <View style={PlayerHeaderStyles.secondColumn}>
+                <View style={PlayerHeaderStyles.secondRow}>
+                  <Text style={PlayerHeaderStyles.headerText}>Fila 1</Text>
                 </View>
-                <View style={styles.secondRow}>
-                  <Text style={styles.headerText}>Fila 2</Text>
+                <View style={PlayerHeaderStyles.secondRow}>
+                  <Text style={PlayerHeaderStyles.headerText}>Fila 2</Text>
                 </View>
               </View>
             </View>
@@ -127,7 +139,7 @@ export default function App() {
             headerShown: false,
             tabBarLabel: "",
             tabBarIcon: ({ color }) => (
-              <View style={styles.cameraButtonContainer}>
+              <View style={CameraButtonMenu.cameraButtonContainer}>
                 <Ionicons name="camera" size={54} color={color} />
               </View>
             ),
@@ -159,60 +171,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  icon: {
-    width: 24, // Ajusta el tamaño del icono
-    height: 24, // Ajusta el tamaño del icono
-  },
-  cameraButtonContainer: {
-    width: 90, // Ancho más grande
-    height: 90, // Alto más grande
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: theme.colors.secondary, // O cualquier color que combine
-    borderRadius: 50, // Borde redondeado 50% del tamaño
-    borderWidth: 2, // Añadir borde si es necesario
-    borderColor: theme.colors.white, // Borde blanco (opcional)
-    marginBottom: 10, // Para que sobresalga un poco de la barra de navegación
-    shadowColor: theme.colors.black, // Sombra para un efecto flotante
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 3,
-  },
-  headerContainer: {
-    flexDirection: "row", // Hace que los hijos estén en columnas
-    height: 110, // Altura del header
-    backgroundColor: theme.colors.black, // Color de fondo
-    alignItems: "center", // Centra el contenido verticalmente
-    // paddingTop: Constants.statusBarHeight,
-  },
-  firstColumn: {
-    width: 100, // Ancho fijo de la primera columna
-    height: 100, // Altura fija
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: theme.colors.black, // Color para distinguir
-  },
-  secondColumn: {
-    flex: 1, // Ocupa el resto del espacio
-    flexDirection: "column", // Divide en filas
-  },
-  secondRow: {
-    flex: 1, // Las filas ocupan partes iguales
-    justifyContent: "center",
-    alignItems: "flex-start", // Ajusta contenido al inicio
-    paddingLeft: 10, // Separación interna
-  },
-  headerText: {
-    color: "#fff", // Texto blanco
-    fontSize: 18, // Tamaño de texto
-    fontWeight: "bold", // Negrita
-  },
-  screen: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#e8eaf6",
-  },
-});
