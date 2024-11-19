@@ -15,37 +15,11 @@ import {
   HomeScreen,
 } from "./src/Screens";
 import theme from "./config/theme";
-
-import {
-  PlayerHeaderStyles,
-  CameraButtonMenu,
-  LateralMenu,
-} from "./src/Styles";
+import { PlayerHeaderStyles, CameraButtonMenu } from "./src/Styles";
+import { Screen1, Screen2, Screen3, Screen4 } from "./src/Screens";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-
-// Pantallas para cada botón
-const Screen1 = () => (
-  <View style={LateralMenu.screenDisplay}>
-    <Text>Pantalla 1</Text>
-  </View>
-);
-const Screen2 = () => (
-  <View style={LateralMenu.screenDisplay}>
-    <Text>Pantalla 2</Text>
-  </View>
-);
-const Screen3 = () => (
-  <View style={LateralMenu.screenDisplay}>
-    <Text>Pantalla 3</Text>
-  </View>
-);
-const Screen4 = () => (
-  <View style={LateralMenu.screenDisplay}>
-    <Text>Pantalla 4</Text>
-  </View>
-);
 
 function HomeStack() {
   return (

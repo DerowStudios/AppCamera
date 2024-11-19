@@ -1,6 +1,4 @@
-export { default as axios } from "axios";
 export { useState } from "react";
-export * as FileSystem from "expo-file-system";
 export {
   View,
   Text,
