@@ -1,9 +1,16 @@
-import React, { useState } from "react";
-import { View, Button, Image, StyleSheet, Alert, Text } from "react-native";
+import {
+  useState,
+  View,
+  Button,
+  Image,
+  Alert,
+  Text,
+  FileSystem,
+  axios,
+} from "../../libs";
 import * as ImagePicker from "expo-image-picker";
 import * as ImageManipulator from "expo-image-manipulator";
-import * as FileSystem from "expo-file-system";
-import axios from "axios";
+import { ContainerStyles, CameraScreen } from "../../Styles";
 
 type ImagePickerResult = {
   uri: string;
@@ -157,14 +164,14 @@ export default function CameraView() {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={ContainerStyles.container}>
       <Button title="Seleccionar imagen" onPress={pickImage} />
       <Button title="Tomar foto" onPress={takePhoto} />
       {selectedImage && (
-        <Image source={{ uri: selectedImage }} style={styles.image} />
+        <Image source={{ uri: selectedImage }} style={CameraScreen.image} />
       )}
       {imageDetails && (
-        <View style={styles.detailsContainer}>
+        <View style={CameraScreen.detailsContainer}>
           <Text>
             Dimensiones: {imageDetails.width}x{imageDetails.height}
           </Text>
@@ -186,23 +193,3 @@ export default function CameraView() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  image: {
-    width: 200,
-    height: 200,
-    marginVertical: 20,
-  },
-  detailsContainer: {
-    marginVertical: 10,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: "#ddd",
-    borderRadius: 5,
-  },
-});

@@ -8,7 +8,7 @@ import {
   Ionicons,
 } from "./src/libs";
 import {
-  CameraView,
+  CameraScreen,
   CollectionScreen,
   GroupScreen,
   ChatGameScreen,
@@ -21,7 +21,6 @@ import {
   CameraButtonMenu,
   LateralMenu,
 } from "./src/Styles";
-// import Constants from "expo-constants";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -134,7 +133,7 @@ export default function App() {
         />
         <Tab.Screen
           name="Camera"
-          component={CameraView}
+          component={CameraScreen}
           options={{
             headerShown: false,
             tabBarLabel: "",
