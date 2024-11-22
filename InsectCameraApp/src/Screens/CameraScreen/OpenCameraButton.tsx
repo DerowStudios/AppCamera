@@ -6,7 +6,7 @@ const OpenCameraButton = (/*{ onPress }*/) => {
     Alert.alert("apretaste");
   };
   return (
-    <View>
+    <View style={styles.container}>
       <Pressable
         onPress={onPress}
         style={({ pressed }) => [styles.button, pressed && styles.pressed]}
@@ -22,6 +22,10 @@ const OpenCameraButton = (/*{ onPress }*/) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "blue",
+  },
   button: {
     alignItems: "center",
     justifyContent: "center",

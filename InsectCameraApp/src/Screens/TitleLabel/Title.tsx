@@ -12,8 +12,6 @@ const TitleLabel: React.FC<TitleLabelProps> = ({ children }) => {
     <View style={styles.container}>
       <View style={styles.title}>
         <Ionicons name="arrow-back-circle" style={styles.IconImage} />
-      </View>
-      <View style={styles.titleText}>
         <Text style={styles.texto}>Todo esto es un title</Text>
       </View>
       {children}
@@ -25,20 +23,22 @@ export default TitleLabel;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    padding: 15,
   },
-  title: {},
+  title: {
+    flexDirection: "row",
+  },
   texto: {
     fontSize: 22,
     lineHeight: 22,
     color: "#343434",
     flex: 1,
     fontWeight: "500",
-    alignContent: "center",
-    textAlign: "center",
+    justifyContent: "flex-start",
+    alignContent: "flex-end",
   },
   titleText: {
-    padding: 10,
+    marginTop: -20,
     paddingBottom: 30,
   },
   IconImage: {
