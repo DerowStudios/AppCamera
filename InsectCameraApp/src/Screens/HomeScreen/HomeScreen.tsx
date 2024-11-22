@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import ContainerStyles from "../../Styles/ContainerStyles";
+import { ContainerStyles } from "../../Styles";
 
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 // Crear el stack navigator y asociarlo con el tipo RootStackParamList

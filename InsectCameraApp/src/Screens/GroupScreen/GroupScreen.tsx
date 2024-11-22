@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import ContainerStyles from "../../Styles/ContainerStyles";
+import { ContainerStyles } from "../../Styles";
 
 const GroupScreen = () => {
   return (

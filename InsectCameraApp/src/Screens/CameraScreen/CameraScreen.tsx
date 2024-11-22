@@ -1,10 +1,20 @@
-import { useState, View, Button, Image, Alert, Text } from "../../libs";
+import {
+  useState,
+  View,
+  Button,
+  Image,
+  Alert,
+  Text,
+  StyleSheet,
+} from "../../libs";
 import * as ImagePicker from "expo-image-picker";
 import * as ImageManipulator from "expo-image-manipulator";
 import { ContainerStyles, CameraScreen } from "../../Styles";
 import * as FileSystem from "expo-file-system";
 import axios from "axios";
 import OpenCameraButton from "./OpenCameraButton";
+import InfoButtons from "./InfoButtons";
+import TitleLabel from "../TitleLabel/Title";
 type ImagePickerResult = {
   uri: string;
   type: string;
@@ -24,7 +34,7 @@ export default function CameraView() {
     if (!permissionResult.granted) {
       Alert.alert(
         "Permisos necesarios",
-        "Necesitas otorgar permisos para acceder a tus fotos.",
+        "Necesitas otorgar permisos para acceder a tus fotos."
       );
       return;
     }
@@ -49,7 +59,7 @@ export default function CameraView() {
     if (!permissionResult.granted) {
       Alert.alert(
         "Permisos necesarios",
-        "Necesitas otorgar permisos para acceder a la cámara.",
+        "Necesitas otorgar permisos para acceder a la cámara."
       );
       return;
     }
@@ -73,7 +83,7 @@ export default function CameraView() {
       const { width, height } = await ImageManipulator.manipulateAsync(
         uri,
         [],
-        {},
+        {}
       );
 
       // Obtener el tamaño en bytes
@@ -125,7 +135,7 @@ export default function CameraView() {
       [{ resize: { width: 130, height: 224 } }],
       {
         format: ImageManipulator.SaveFormat.JPEG,
-      },
+      }
     );
 
     showImageDetails(resizedImage.uri);
@@ -145,7 +155,7 @@ export default function CameraView() {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-        },
+        }
       );
       setPredicted(response.data[0].class);
       Alert.alert("Éxito", "Imagen subida correctamente");
@@ -157,9 +167,16 @@ export default function CameraView() {
   };
 
   return (
-    <View style={ContainerStyles.container}>
-      <OpenCameraButton />
-      <Button title="Seleccionar imagen" onPress={pickImage} />
+    <TitleLabel>
+      <View style={ContainerStyles.container}>
+        <OpenCameraButton />
+      </View>
+    </TitleLabel>
+  );
+}
+
+{
+  /* <Button title="Seleccionar imagen" onPress={pickImage} />
       <Button title="Tomar foto" onPress={takePhoto} />
       {selectedImage && (
         <Image source={{ uri: selectedImage }} style={CameraScreen.image} />
@@ -183,7 +200,5 @@ export default function CameraView() {
         onPress={uploadImage}
         disabled={!selectedImage}
       />
-      {predicted && <Text>{predicted}</Text>}
-    </View>
-  );
+      {predicted && <Text>{predicted}</Text>} */
 }
