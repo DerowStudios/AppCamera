@@ -4,6 +4,7 @@ import * as ImageManipulator from "expo-image-manipulator";
 import { ContainerStyles, CameraScreen } from "../../Styles";
 import * as FileSystem from "expo-file-system";
 import axios from "axios";
+import OpenCameraButton from "./OpenCameraButton";
 type ImagePickerResult = {
   uri: string;
   type: string;
@@ -157,6 +158,7 @@ export default function CameraView() {
 
   return (
     <View style={ContainerStyles.container}>
+      <OpenCameraButton />
       <Button title="Seleccionar imagen" onPress={pickImage} />
       <Button title="Tomar foto" onPress={takePhoto} />
       {selectedImage && (
