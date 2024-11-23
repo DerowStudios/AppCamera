@@ -20,6 +20,7 @@ import { Screen1, Screen2, Screen3, Screen4 } from "./src/Screens";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import CameraOn from "./src/Screens/CameraScreen/CameraOn";
 
 // Evita que la pantalla de inicio desaparezca automáticamente
 SplashScreen.preventAutoHideAsync();
@@ -28,19 +29,6 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 function HomeStack() {
-  const [fontsLoaded] = useFonts({
-    "Ribeye-Regular": require("./assets/fonts/Ribeye-Regular.ttf"),
-  });
-  useEffect(() => {
-    if (fontsLoaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
-
-  // Renderiza un contenedor vacío mientras las fuentes cargan
-  if (!fontsLoaded) {
-    return null;
-  }
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -75,7 +63,39 @@ function HomeStack() {
   );
 }
 
+function CaptureStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Inicio"
+        component={CameraScreen as any}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen name="CameraOn" component={CameraOn} />
+      <Stack.Screen name="Paso2" component={Screen2} />
+      <Stack.Screen name="Paso3" component={Screen3} />
+      <Stack.Screen name="Paso4" component={Screen4} />
+    </Stack.Navigator>
+  );
+}
+
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    "Ribeye-Regular": require("./assets/fonts/Ribeye-Regular.ttf"),
+  });
+
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  // Renderiza un contenedor vacío mientras las fuentes cargan
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
     <NavigationContainer>
       <StatusBar
@@ -126,7 +146,7 @@ export default function App() {
         />
         <Tab.Screen
           name="Camera"
-          component={CameraScreen}
+          component={CaptureStack}
           options={{
             headerShown: false,
             tabBarLabel: "",

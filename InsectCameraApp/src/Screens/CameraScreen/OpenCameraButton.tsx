@@ -1,9 +1,22 @@
 import { Pressable, Image, StyleSheet, Alert, View } from "react-native";
 import InfoButtons from "./InfoButtons";
+import * as ImagePicker from "expo-image-picker";
 import { Shadow } from "react-native-shadow-2";
+import { useNavigation } from "@react-navigation/native";
 const OpenCameraButton = (/*{ onPress }*/) => {
-  const onPress = () => {
-    Alert.alert("apretaste");
+  const navigation = useNavigation();
+  const onPress = async () => {
+    const permissionResult =
+      await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (!permissionResult.granted) {
+      Alert.alert(
+        "Permisos necesarios",
+        "Necesitas otorgar permisos para acceder a tus fotos.",
+      );
+      return;
+    }
+    navigation.navigate("CameraOn" as never);
   };
   return (
     <View style={styles.container}>

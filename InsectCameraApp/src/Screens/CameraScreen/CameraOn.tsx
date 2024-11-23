@@ -1,35 +1,31 @@
-import { useState, View, Alert } from "../../libs";
+import axios from "axios";
 import * as ImagePicker from "expo-image-picker";
 import * as ImageManipulator from "expo-image-manipulator";
-import { ContainerStyles, CameraScreen } from "../../Styles";
 import * as FileSystem from "expo-file-system";
-import axios from "axios";
-import OpenCameraButton from "./OpenCameraButton";
-import TitleLabel from "../TitleLabel/Title";
+import { ContainerStyles, CameraScreen } from "../../Styles";
+import {
+  useState,
+  View,
+  Button,
+  Image,
+  Alert,
+  Text,
+  useEffect,
+} from "../../libs";
+import { useNavigation } from "@react-navigation/native";
+
 type ImagePickerResult = {
   uri: string;
   type: string;
   name: string;
 };
 
-export default function CameraView() {
+const CameraOn = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [predicted, setPredicted] = useState<string | null>(null);
   const [imageDetails, setImageDetails] = useState<any>(null); // Para almacenar las características de la imagen
-
-  // Función para seleccionar una imagen de la galería
+  const navigation = useNavigation();
   const pickImage = async () => {
-    const permissionResult =
-      await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-    if (!permissionResult.granted) {
-      Alert.alert(
-        "Permisos necesarios",
-        "Necesitas otorgar permisos para acceder a tus fotos."
-      );
-      return;
-    }
-
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
@@ -50,7 +46,7 @@ export default function CameraView() {
     if (!permissionResult.granted) {
       Alert.alert(
         "Permisos necesarios",
-        "Necesitas otorgar permisos para acceder a la cámara."
+        "Necesitas otorgar permisos para acceder a la cámara.",
       );
       return;
     }
@@ -66,6 +62,9 @@ export default function CameraView() {
       await showImageDetails(result.assets[0].uri); // Obtener detalles de la imagen tomada
     }
   };
+  useEffect(() => {
+    takePhoto();
+  }, []);
 
   // Función para mostrar las características de la imagen
   const showImageDetails = async (uri: string) => {
@@ -74,7 +73,7 @@ export default function CameraView() {
       const { width, height } = await ImageManipulator.manipulateAsync(
         uri,
         [],
-        {}
+        {},
       );
 
       // Obtener el tamaño en bytes
@@ -126,7 +125,7 @@ export default function CameraView() {
       [{ resize: { width: 130, height: 224 } }],
       {
         format: ImageManipulator.SaveFormat.JPEG,
-      }
+      },
     );
 
     showImageDetails(resizedImage.uri);
@@ -140,13 +139,13 @@ export default function CameraView() {
 
     try {
       const response = await axios.post(
-        "http://192.168.0.105:3000/predict",
+        "http://192.168.0.21:3000/predict",
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-        }
+        },
       );
       setPredicted(response.data[0].class);
       Alert.alert("Éxito", "Imagen subida correctamente");
@@ -156,21 +155,9 @@ export default function CameraView() {
       console.error(error);
     }
   };
-
   return (
-    <TitleLabel title="Este title">
-      <View style={ContainerStyles.container}>
-        <OpenCameraButton />
-      </View>
-    </TitleLabel>
-  );
-}
-
-{
-  /* 
-   <View style={ContainerStyles.container}>
-  <Button title="Seleccionar imagen" onPress={pickImage} />
-      <Button title="Tomar foto" onPress={takePhoto} />
+    <View style={ContainerStyles.container}>
+      <Button title="Seleccionar imagen" onPress={pickImage} />
       {selectedImage && (
         <Image source={{ uri: selectedImage }} style={CameraScreen.image} />
       )}
@@ -194,5 +181,8 @@ export default function CameraView() {
         disabled={!selectedImage}
       />
       {predicted && <Text>{predicted}</Text>}
-      </View>*/
-}
+    </View>
+  );
+};
+
+export default CameraOn;
