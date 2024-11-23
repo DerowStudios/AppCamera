@@ -3,7 +3,7 @@ const theme = {
     primary: "#84DC80",
     secondary: "#6200EE",
     background: "#FFFFFF",
-    text: "#000000",
+    text: "#333333",
     textSecondary: "#373736",
     error: "#B00020",
     white: "#FFFFFF",
@@ -15,6 +15,7 @@ const theme = {
     medium: 16,
     large: 20,
   },
+  fontFamily: { ribeye: "Ribeye-Regular" },
   spacing: {
     small: 8,
     medium: 16,

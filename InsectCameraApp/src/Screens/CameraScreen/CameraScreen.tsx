@@ -167,7 +167,7 @@ export default function CameraView() {
   };
 
   return (
-    <TitleLabel>
+    <TitleLabel title="Este title">
       <View style={ContainerStyles.container}>
         <OpenCameraButton />
       </View>

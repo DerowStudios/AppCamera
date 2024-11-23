@@ -1,4 +1,4 @@
-export { useState } from "react";
+export { useState, ReactNode, useEffect } from "react";
 export {
   View,
   Text,
@@ -7,6 +7,7 @@ export {
   Image,
   StyleSheet,
   Alert,
+  Pressable,
 } from "react-native";
 export { NavigationContainer } from "@react-navigation/native";
 export { createBottomTabNavigator } from "@react-navigation/bottom-tabs";

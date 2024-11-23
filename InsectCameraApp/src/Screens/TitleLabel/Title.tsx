@@ -1,16 +1,13 @@
-import { ReactNode } from "react";
-import { View, Text, StyleSheet, Pressable, Alert } from "react-native";
-import { Ionicons } from "../../libs";
-import theme from "../../../config/theme";
-// import { ContainerStyles } from "../../Styles";
+import { View, Text, Pressable, Alert, ReactNode, Ionicons } from "../../libs";
+import { TitleScreenStyles, ButtonStyles } from "../../Styles";
 
 interface TitleLabelProps {
   children: ReactNode;
-  title: string | undefined;
-  back: boolean | undefined;
-  next: boolean | undefined;
-  close: boolean | undefined;
-  standar: boolean;
+  title: string;
+  back?: boolean;
+  next?: boolean;
+  close?: boolean;
+  standar?: boolean;
 }
 
 const TitleLabel: React.FC<TitleLabelProps> = ({
@@ -30,31 +27,50 @@ const TitleLabel: React.FC<TitleLabelProps> = ({
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.title}>
+    <View style={TitleScreenStyles.container}>
+      <View style={TitleScreenStyles.title}>
         <Pressable
           onPress={onPress}
           style={({ pressed }) => [
-            close && styles.IconClose,
-            pressed && styles.pressed,
+            close && TitleScreenStyles.IconClose,
+            pressed && ButtonStyles.pressed,
           ]}
         >
           {back && (
-            <Ionicons name="arrow-back-circle" style={styles.IconImage} />
+            <Ionicons
+              name="arrow-back-circle"
+              style={TitleScreenStyles.IconImage}
+            />
           )}
-          {close && <Ionicons name="close-circle" style={[styles.IconImage]} />}
+          {close && (
+            <Ionicons
+              name="close-circle"
+              style={[TitleScreenStyles.IconImage]}
+            />
+          )}
         </Pressable>
-        <Text style={[styles.texto, standar && styles.standarText]}>
+        <Text
+          style={[
+            TitleScreenStyles.texto,
+            standar && TitleScreenStyles.standarText,
+          ]}
+        >
           {title}
         </Text>
       </View>
       {children}
       <Pressable
         onPress={onPress}
-        style={({ pressed }) => [styles.IconNext, pressed && styles.pressed]}
+        style={({ pressed }) => [
+          TitleScreenStyles.IconNext,
+          pressed && ButtonStyles.pressed,
+        ]}
       >
         {next && (
-          <Ionicons name="arrow-forward-circle" style={[styles.IconImage]} />
+          <Ionicons
+            name="arrow-forward-circle"
+            style={[TitleScreenStyles.IconImage]}
+          />
         )}
       </Pressable>
     </View>
@@ -62,40 +78,3 @@ const TitleLabel: React.FC<TitleLabelProps> = ({
 };
 
 export default TitleLabel;
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 10,
-    flex: 1,
-    gap: 30,
-  },
-  title: {
-    flexDirection: "column",
-    alignItems: "flex-start",
-  },
-  standarText: {
-    marginTop: 50,
-  },
-
-  texto: {
-    fontSize: 24,
-    color: "#343434",
-    fontFamily: "Ribeye-Regular",
-    margin: "auto",
-  },
-  IconImage: {
-    color: theme.colors.secondary,
-    fontSize: 50,
-  },
-  IconClose: {
-    marginLeft: "auto",
-  },
-
-  IconNext: {
-    width: 50,
-    marginLeft: "auto",
-  },
-  pressed: {
-    opacity: 0.7,
-  },
-});
