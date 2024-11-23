@@ -6,6 +6,7 @@ import theme from "../../../config/theme";
 
 interface TitleLabelProps {
   children: ReactNode;
+  title: string | undefined;
   back: boolean | undefined;
   next: boolean | undefined;
   close: boolean | undefined;
@@ -14,9 +15,10 @@ interface TitleLabelProps {
 
 const TitleLabel: React.FC<TitleLabelProps> = ({
   children,
+  title = "este",
   standar = true,
   back,
-  next = true,
+  next,
   close,
 }) => {
   if (back || close) {
@@ -43,16 +45,13 @@ const TitleLabel: React.FC<TitleLabelProps> = ({
           {close && <Ionicons name="close-circle" style={[styles.IconImage]} />}
         </Pressable>
         <Text style={[styles.texto, standar && styles.standarText]}>
-          Todo esto es un title
+          {title}
         </Text>
       </View>
       {children}
       <Pressable
         onPress={onPress}
-        style={({ pressed }) => [
-          next && styles.IconNext,
-          pressed && styles.pressed,
-        ]}
+        style={({ pressed }) => [styles.IconNext, pressed && styles.pressed]}
       >
         {next && (
           <Ionicons name="arrow-forward-circle" style={[styles.IconImage]} />
@@ -66,9 +65,7 @@ export default TitleLabel;
 
 const styles = StyleSheet.create({
   container: {
-    paddingLeft: 8,
-    paddingRight: 8,
-    paddingTop: 10,
+    padding: 10,
     flex: 1,
     gap: 30,
   },
@@ -93,9 +90,10 @@ const styles = StyleSheet.create({
   IconClose: {
     marginLeft: "auto",
   },
+
   IconNext: {
+    width: 50,
     marginLeft: "auto",
-    paddingBottom: 10,
   },
   pressed: {
     opacity: 0.7,
