@@ -17,11 +17,30 @@ import {
 import theme from "./config/theme";
 import { PlayerHeaderStyles, CameraButtonMenu } from "./src/Styles";
 import { Screen1, Screen2, Screen3, Screen4 } from "./src/Screens";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+import { useEffect } from "react";
+
+// Evita que la pantalla de inicio desaparezca automáticamente
+SplashScreen.preventAutoHideAsync();
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 function HomeStack() {
+  const [fontsLoaded] = useFonts({
+    "Ribeye-Regular": require("./assets/fonts/Ribeye-Regular.ttf"),
+  });
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  // Renderiza un contenedor vacío mientras las fuentes cargan
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
     <Stack.Navigator>
       <Stack.Screen

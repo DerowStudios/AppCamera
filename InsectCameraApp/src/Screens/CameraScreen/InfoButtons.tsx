@@ -1,5 +1,7 @@
 import { Pressable, Image, StyleSheet, Alert, View } from "react-native";
 import { Ionicons } from "../../libs";
+import theme from "../../../config/theme";
+import { Shadow } from "react-native-shadow-2";
 
 const InfoButtons = (/*{ onPress }*/) => {
   const onPress = () => {
@@ -11,17 +13,18 @@ const InfoButtons = (/*{ onPress }*/) => {
         onPress={onPress}
         style={({ pressed }) => [styles.icon, pressed && styles.pressed]}
       >
+        {/* <Shadow distance={5} startColor={"#00000015"}> */}
         <Ionicons name="information-circle" style={styles.IconImage} />
+        {/* </Shadow> */}
       </Pressable>
+
       <Pressable
         onPress={onPress}
-        style={({ pressed }) => [
-          styles.icon,
-          styles.iconAlert,
-          pressed && styles.pressed,
-        ]}
+        style={({ pressed }) => [styles.icon, pressed && styles.pressed]}
       >
+        {/* <Shadow distance={5} startColor={"#00000015"}> */}
         <Ionicons name="warning" style={[styles.IconImage, styles.iconAlert]} />
+        {/* </Shadow> */}
       </Pressable>
     </View>
   );
@@ -29,24 +32,29 @@ const InfoButtons = (/*{ onPress }*/) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: "row",
     justifyContent: "flex-end",
     width: 250,
     alignItems: "flex-end",
-    gap: 3,
+    gap: 5,
+    padding: 3,
+    paddingTop: 20,
   },
   IconImage: {
-    color: "gray",
+    color: "orange",
     fontSize: 40,
+    // backgroundColor: theme.colors.gray,
+    borderRadius: 50,
   },
 
   pressed: {
     opacity: 0.7, // Reduce opacidad al presionar
   },
-  icon: {},
+  icon: {
+    borderRadius: 50,
+  },
   iconAlert: {
-    color: "red",
+    color: theme.colors.secondary,
   },
 });
 

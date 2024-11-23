@@ -34,7 +34,7 @@ export default function CameraView() {
     if (!permissionResult.granted) {
       Alert.alert(
         "Permisos necesarios",
-        "Necesitas otorgar permisos para acceder a tus fotos."
+        "Necesitas otorgar permisos para acceder a tus fotos.",
       );
       return;
     }
@@ -59,7 +59,7 @@ export default function CameraView() {
     if (!permissionResult.granted) {
       Alert.alert(
         "Permisos necesarios",
-        "Necesitas otorgar permisos para acceder a la cámara."
+        "Necesitas otorgar permisos para acceder a la cámara.",
       );
       return;
     }
@@ -83,7 +83,7 @@ export default function CameraView() {
       const { width, height } = await ImageManipulator.manipulateAsync(
         uri,
         [],
-        {}
+        {},
       );
 
       // Obtener el tamaño en bytes
@@ -135,7 +135,7 @@ export default function CameraView() {
       [{ resize: { width: 130, height: 224 } }],
       {
         format: ImageManipulator.SaveFormat.JPEG,
-      }
+      },
     );
 
     showImageDetails(resizedImage.uri);
@@ -155,7 +155,7 @@ export default function CameraView() {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-        }
+        },
       );
       setPredicted(response.data[0].class);
       Alert.alert("Éxito", "Imagen subida correctamente");
