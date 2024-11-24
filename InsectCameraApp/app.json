@@ -20,7 +20,10 @@
           "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
           "recordAudioAndroid": true
         }
-      ],
+      ], ["expo-image-picker", {
+        "photosPermission": true,
+        "cameraPermission": true
+      }],
       [
         "expo-font",
         {
