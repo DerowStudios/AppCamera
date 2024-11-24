@@ -16,12 +16,24 @@ import {
 } from "./src/Screens";
 import theme from "./config/theme";
 import { PlayerHeaderStyles, CameraButtonMenu } from "./src/Styles";
-import { Screen1, Screen2, Screen3, Screen4 } from "./src/Screens";
+import {
+  Screen1,
+  Screen2,
+  Screen3,
+  Screen4,
+  CameraOn,
+  ImageCut,
+} from "./src/Screens";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
-import CameraOn from "./src/Screens/CameraScreen/CameraOn";
 
+export type RootStackParamList = {
+  CameraOn: undefined; // Esta pantalla no recibe parámetros
+  ImageCut: { selectedImage: string | null }; // Esta pantalla recibe un objeto `selectedImage`
+  Paso3: undefined;
+  Paso4: undefined;
+};
 // Evita que la pantalla de inicio desaparezca automáticamente
 SplashScreen.preventAutoHideAsync();
 
@@ -74,7 +86,7 @@ function CaptureStack() {
         }}
       />
       <Stack.Screen name="CameraOn" component={CameraOn} />
-      <Stack.Screen name="Paso2" component={Screen2} />
+      <Stack.Screen name="ImageCut" component={ImageCut} />
       <Stack.Screen name="Paso3" component={Screen3} />
       <Stack.Screen name="Paso4" component={Screen4} />
     </Stack.Navigator>

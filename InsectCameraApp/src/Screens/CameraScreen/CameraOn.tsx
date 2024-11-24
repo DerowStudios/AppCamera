@@ -13,19 +13,30 @@ import {
   useEffect,
 } from "../../libs";
 import { useNavigation } from "@react-navigation/native";
+import { RootStackParamList } from "../../../App";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 type ImagePickerResult = {
   uri: string;
   type: string;
   name: string;
 };
-
+type CameraOnNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  "ImageCut"
+>;
 const CameraOn = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [predicted, setPredicted] = useState<string | null>(null);
   const [imageDetails, setImageDetails] = useState<any>(null); // Para almacenar las características de la imagen
-  const navigation = useNavigation();
-
+  const navigation = useNavigation<CameraOnNavigationProp>();
+  const handleNavigation = () => {
+    if (selectedImage) {
+      navigation.navigate("ImageCut", { selectedImage });
+    } else {
+      Alert.alert("Error", "No se ha seleccionado ninguna imagen.");
+    }
+  };
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -47,7 +58,7 @@ const CameraOn = () => {
     if (!permissionResult.granted) {
       Alert.alert(
         "Permisos necesarios",
-        "Necesitas otorgar permisos para acceder a la cámara."
+        "Necesitas otorgar permisos para acceder a la cámara.",
       );
       return;
     }
@@ -74,7 +85,7 @@ const CameraOn = () => {
       const { width, height } = await ImageManipulator.manipulateAsync(
         uri,
         [],
-        {}
+        {},
       );
 
       // Obtener el tamaño en bytes
@@ -126,7 +137,7 @@ const CameraOn = () => {
       [{ resize: { width: 130, height: 224 } }],
       {
         format: ImageManipulator.SaveFormat.JPEG,
-      }
+      },
     );
 
     showImageDetails(resizedImage.uri);
@@ -146,7 +157,7 @@ const CameraOn = () => {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-        }
+        },
       );
       setPredicted(response.data[0].class);
       Alert.alert("Éxito", "Imagen subida correctamente");
@@ -182,6 +193,11 @@ const CameraOn = () => {
         disabled={!selectedImage}
       />
       {predicted && <Text>{predicted}</Text>}
+      <Button
+        title="Next"
+        onPress={handleNavigation}
+        disabled={!selectedImage}
+      />
     </View>
   );
 };
