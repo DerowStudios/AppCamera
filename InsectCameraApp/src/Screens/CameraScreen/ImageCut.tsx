@@ -1,16 +1,21 @@
 import { Alert, Button, Image, Text, View } from "react-native";
-import { RootStackParamList } from "../../../App";
-import { RouteProp, useRoute } from "@react-navigation/native";
+import { FunctionalStackParams, RootStackParamList } from "../../../App";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
 import * as ImageManipulator from "expo-image-manipulator";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CameraScreen, ContainerStyles } from "../../Styles";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 type ImageCutRouteProp = RouteProp<RootStackParamList, "ImageCut">;
-
+type CameraOnNavigationProp = StackNavigationProp<
+  FunctionalStackParams,
+  "LoadingLayout"
+>;
 const ImageCut = () => {
   const route = useRoute<ImageCutRouteProp>();
+  const navigate = useNavigation<CameraOnNavigationProp>();
   const { selectedImage } = route.params;
   const [predicted, setPredicted] = useState<string | null>(null);
   const [imageDetails, setImageDetails] = useState<any>(null); // Para almacenar las características de la imagen
@@ -105,6 +110,10 @@ const ImageCut = () => {
       console.error(error);
     }
   };
+  useEffect(() => {
+    const response = predicted;
+    navigate.navigate("LoadingLayout", { response });
+  }, [predicted]);
   return (
     <View style={ContainerStyles.container}>
       <Text>Esta view es cameracut</Text>
@@ -119,6 +128,7 @@ const ImageCut = () => {
         onPress={uploadImage}
         disabled={!selectedImage}
       />
+
       {imageDetails && (
         <View style={CameraScreen.detailsContainer}>
           <Text>

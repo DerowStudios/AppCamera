@@ -9,3 +9,4 @@ export { default as Screen3 } from "./Screen3/Screen3";
 export { default as Screen4 } from "./Screen4/Screen4";
 export { default as CameraOn } from "./CameraScreen/CameraOn";
 export { default as ImageCut } from "./CameraScreen/ImageCut";
+export { default as TitleLayout } from "./TitleLayout/TitleLayout";

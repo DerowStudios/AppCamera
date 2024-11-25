@@ -40,7 +40,7 @@ const ImageCrop = ({ uri }) => {
             },
           },
         ],
-        { compress: 1, format: ImageManipulator.SaveFormat.PNG },
+        { compress: 1, format: ImageManipulator.SaveFormat.PNG }
       );
       setSelectedUri(croppedImage.uri); // Actualizamos la imagen con el resultado del corte
       onToggleModal(); // Cerrar el modal

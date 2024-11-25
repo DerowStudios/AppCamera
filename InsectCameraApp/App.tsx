@@ -27,6 +27,8 @@ import {
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import LoadingLayout from "./src/Screens/LoadScreen/LoadingLayout";
+import PrizeScreen from "./src/Screens/PrizeScreen/PrizeScreen";
 
 export type RootStackParamList = {
   CameraOn: undefined; // Esta pantalla no recibe parámetros
@@ -34,11 +36,17 @@ export type RootStackParamList = {
   Paso3: undefined;
   Paso4: undefined;
 };
+export type FunctionalStackParams = {
+  LoadingLayout: { response: string | null };
+  PrizeScreen: { response: string | null };
+};
+//
 // Evita que la pantalla de inicio desaparezca automáticamente
 SplashScreen.preventAutoHideAsync();
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+const FunctionalStack = createStackNavigator();
 
 function HomeStack() {
   return (
@@ -108,12 +116,96 @@ export default function App() {
   if (!fontsLoaded) {
     return null;
   }
+
+  function TabNavigator() {
+    return (
+      <Tab.Navigator
+        screenOptions={{
+          tabBarStyle: {
+            backgroundColor: theme.colors.secondary,
+            height: 80, // Aumenta la altura de la Tab Bar
+            paddingTop: 10,
+            paddingBottom: 10,
+          },
+          // Estilo de la barra
+          tabBarActiveTintColor: theme.colors.primary, // Color activo
+          tabBarInactiveTintColor: theme.colors.white, // Color inactivo
+          tabBarItemStyle: {
+            // Estilo de los íconos cuando se hace clic
+            borderRadius: 30, // Radio del área de toque (circular)
+            height: 50,
+            paddingTop: 8,
+            paddingHorizontal: 30, // Tamaño horizontal de la área de toque
+          },
+        }}
+      >
+        <Tab.Screen
+          name="Home"
+          component={HomeStack}
+          options={{
+            tabBarLabel: "",
+            headerShown: false,
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="home" size={24} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Collections"
+          component={CollectionScreen}
+          options={{
+            headerShown: false,
+            tabBarLabel: "",
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="home" size={24} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Camera"
+          component={CaptureStack}
+          options={{
+            headerShown: false,
+            tabBarLabel: "",
+            tabBarIcon: ({ color }) => (
+              <View style={CameraButtonMenu.cameraButtonContainer}>
+                <Ionicons name="camera" size={54} color={color} />
+              </View>
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Group"
+          component={GroupScreen}
+          options={{
+            headerShown: false,
+            tabBarLabel: "",
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="home" size={24} color={color} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Chat"
+          component={ChatGameScreen}
+          options={{
+            headerShown: false,
+            tabBarLabel: "",
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="home" size={24} color={color} />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    );
+  }
+
   return (
     <NavigationContainer>
       <StatusBar
         barStyle="light-content" // Cambia el texto a blanco
       />
-      <Tab.Navigator
+      {/* <Tab.Navigator
         screenOptions={{
           tabBarStyle: {
             backgroundColor: theme.colors.secondary,
@@ -192,6 +284,20 @@ export default function App() {
           }}
         />
       </Tab.Navigator>
+      <FunctionalStack.Navigator>
+        <FunctionalStack.Screen
+          name="LoadingLayout"
+          component={LoadingLayout}
+        />
+        <FunctionalStack.Screen name="PrizeScreen" component={PrizeScreen} />
+      </FunctionalStack.Navigator> */}
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {/* Tab Navigator as a screen */}
+        <Stack.Screen name="MainTabs" component={TabNavigator} />
+        {/* Other screens */}
+        <Stack.Screen name="LoadingLayout" component={LoadingLayout} />
+        <Stack.Screen name="PrizeScreen" component={PrizeScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

@@ -10,7 +10,7 @@ interface TitleLabelProps {
   standar?: boolean;
 }
 
-const TitleLabel: React.FC<TitleLabelProps> = ({
+const TitleLayout: React.FC<TitleLabelProps> = ({
   children,
   title = "este",
   standar = true,
@@ -77,4 +77,4 @@ const TitleLabel: React.FC<TitleLabelProps> = ({
   );
 };
 
-export default TitleLabel;
+export default TitleLayout;
