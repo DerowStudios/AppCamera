@@ -1,6 +1,6 @@
 import { View } from "../../libs";
 import { ContainerStyles } from "../../Styles";
-import TitleLayout from "../TitleLayout/TitleLayout";
+import { TitleLayout } from "../../Components";
 import OpenCameraButton from "./OpenCameraButton";
 
 export default function CameraView() {

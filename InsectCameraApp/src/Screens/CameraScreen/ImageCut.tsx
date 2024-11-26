@@ -1,10 +1,11 @@
 import { Alert, Button, Image, Text, View } from "react-native";
-import { FunctionalStackParams, RootStackParamList } from "../../../App";
+import { RootStackParamList } from "../../Navigation/CatureStack";
+import { FunctionalStackParams } from "../../Navigation/AppNavigation";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
 import * as ImageManipulator from "expo-image-manipulator";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CameraScreen, ContainerStyles } from "../../Styles";
 import { StackNavigationProp } from "@react-navigation/stack";
 
@@ -17,7 +18,7 @@ const ImageCut = () => {
   const route = useRoute<ImageCutRouteProp>();
   const navigate = useNavigation<CameraOnNavigationProp>();
   const { selectedImage } = route.params;
-  const [predicted, setPredicted] = useState<string | null>(null);
+  // const [predicted, setPredicted] = useState<string | null>(null);
   const [imageDetails, setImageDetails] = useState<any>(null); // Para almacenar las características de la imagen
   type ImagePickerResult = {
     uri: string;
@@ -102,7 +103,9 @@ const ImageCut = () => {
           },
         },
       );
-      setPredicted(response.data[0].class);
+      // const response = predicted;
+      navigate.navigate("LoadingLayout", { response: response.data[0].class });
+      // setPredicted(response.data[0].class);
       Alert.alert("Éxito", "Imagen subida correctamente");
       console.log("Respuesta del servidor:", response.data);
     } catch (error) {
@@ -110,10 +113,7 @@ const ImageCut = () => {
       console.error(error);
     }
   };
-  useEffect(() => {
-    const response = predicted;
-    navigate.navigate("LoadingLayout", { response });
-  }, [predicted]);
+
   return (
     <View style={ContainerStyles.container}>
       <Text>Esta view es cameracut</Text>
@@ -143,7 +143,7 @@ const ImageCut = () => {
           </Text>
         </View>
       )}
-      {predicted && <Text>{predicted}</Text>}
+      {/* {predicted && <Text>{predicted}</Text>} */}
     </View>
   );
 };

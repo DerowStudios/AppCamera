@@ -13,7 +13,7 @@ import {
   useEffect,
 } from "../../libs";
 import { useNavigation } from "@react-navigation/native";
-import { RootStackParamList } from "../../../App";
+import { RootStackParamList } from "../../Navigation/CatureStack";
 import { StackNavigationProp } from "@react-navigation/stack";
 
 type ImagePickerResult = {

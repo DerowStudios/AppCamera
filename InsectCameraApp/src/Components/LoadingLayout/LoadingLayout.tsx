@@ -1,5 +1,5 @@
 import { Text, View } from "react-native";
-import TitleLayout from "../TitleLayout/TitleLayout";
+import TitleLayout from "../../Screens/TitleLayout/TitleLayout";
 import { Ionicons, useEffect, useState } from "../../libs";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { FunctionalStackParams } from "../../../App";
