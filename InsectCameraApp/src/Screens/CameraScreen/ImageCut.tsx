@@ -16,12 +16,14 @@ import * as FileSystem from "expo-file-system";
 import * as ImageManipulator from "expo-image-manipulator";
 import { CameraScreen, ContainerStyles } from "../../Styles";
 import RetryButton from "../../Components/RetryButton/RetryButton";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 type ImageCutRouteProp = RouteProp<CameraStackParamList, "ImageCut">;
 type CameraOnNavigationProp = StackNavigationProp<
   CameraStackParamList,
   "LoadingLayout"
 >;
+
 const ImageCut = ({
   navigation,
   route,
@@ -45,7 +47,7 @@ const ImageCut = ({
       const { width, height } = await ImageManipulator.manipulateAsync(
         uri,
         [],
-        {},
+        {}
       );
 
       // Obtener el tamaño en bytes
@@ -96,7 +98,7 @@ const ImageCut = ({
       [{ resize: { width: 130, height: 224 } }],
       {
         format: ImageManipulator.SaveFormat.JPEG,
-      },
+      }
     );
 
     showImageDetails(resizedImage.uri);
@@ -116,7 +118,7 @@ const ImageCut = ({
           headers: {
             "Content-Type": "multipart/form-data",
           },
-        },
+        }
       );
       // const response = predicted;
 
@@ -133,7 +135,7 @@ const ImageCut = ({
               params: { response: response.data[0].class },
             }, // Reinicia CameraStack
           ],
-        }),
+        })
       );
 
       console.log("Respuesta del servidor:", response.data);

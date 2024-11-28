@@ -2,6 +2,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { ContainerStyles } from "../../Styles";
 
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { Ionicons } from "../../libs";
 // Crear el stack navigator y asociarlo con el tipo RootStackParamList
 // const Stack = createStackNavigator<RootStackParamList>();
 
@@ -10,11 +11,11 @@ type RootStackParamList = {
   Screen1: undefined;
   Screen2: undefined;
   Screen3: undefined;
-  Screen4: undefined;
+  OpenPackage: undefined;
 };
 type HomeScreenProps = NativeStackScreenProps<
   RootStackParamList,
-  "Home" | "Screen1" | "Screen2" | "Screen3" | "Screen4"
+  "Home" | "Screen1" | "Screen2" | "Screen3" | "OpenPackage"
 >;
 // //stack Navigation.
 //function HomeScreen({ navigation }: HomeScreenProps) {
@@ -27,11 +28,18 @@ function HomeScreen({ navigation }: HomeScreenProps) {
       {/* Menú lateral flotante */}
       <View style={styles.menu}>
         <TouchableOpacity
-          style={styles.menuButton}
+          style={[styles.menuButton, { backgroundColor: "transparent" }]}
           onPress={() => navigation.navigate("Screen1")}
         >
-          <Text style={styles.menuText}>1</Text>
+          <Ionicons name="globe" color={"green"} size={40} />
         </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.menuButton, { backgroundColor: "transparent" }]}
+          onPress={() => navigation.navigate("OpenPackage")}
+        >
+          <Ionicons name="gift" color={"red"} size={40} />
+        </TouchableOpacity>
+
         <TouchableOpacity
           style={styles.menuButton}
           onPress={() => navigation.navigate("Screen2")}
@@ -43,12 +51,6 @@ function HomeScreen({ navigation }: HomeScreenProps) {
           onPress={() => navigation.navigate("Screen3")}
         >
           <Text style={styles.menuText}>3</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.menuButton}
-          onPress={() => navigation.navigate("Screen4")}
-        >
-          <Text style={styles.menuText}>4</Text>
         </TouchableOpacity>
       </View>
     </View>

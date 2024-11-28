@@ -9,3 +9,6 @@ export { default as Screen3 } from "./Screen3/Screen3";
 export { default as Screen4 } from "./Screen4/Screen4";
 export { default as CameraOn } from "./CameraScreen/CameraOn";
 export { default as ImageCut } from "./CameraScreen/ImageCut";
+export { default as OpenPackage } from "./OpenPackage/OpenPackage";
+export { default as PrizeScreen } from "./PrizeScreen/PrizeScreen";
+export { default as PrizeCards } from "./PrizeScreen/PrizeCards";

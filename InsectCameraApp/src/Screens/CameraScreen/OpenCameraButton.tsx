@@ -14,7 +14,7 @@ const OpenCameraButton = (/*{ onPress }*/) => {
     if (!permissionResult.granted || !cameraPermission.granted) {
       Alert.alert(
         "Permisos necesarios",
-        "Necesitas otorgar permisos para acceder a tus fotos.",
+        "Necesitas otorgar permisos para acceder a tus fotos."
       );
       return;
     }

@@ -46,7 +46,7 @@ function TabNavigation() {
           headerShown: false,
           tabBarLabel: "",
           tabBarIcon: ({ color }) => (
-            <Ionicons name="home" size={24} color={color} />
+            <Ionicons name="albums" size={28} color={color} />
           ),
         }}
       />
@@ -81,7 +81,7 @@ function TabNavigation() {
           headerShown: false,
           tabBarLabel: "",
           tabBarIcon: ({ color }) => (
-            <Ionicons name="home" size={24} color={color} />
+            <Ionicons name="game-controller" size={28} color={color} />
           ),
         }}
       />

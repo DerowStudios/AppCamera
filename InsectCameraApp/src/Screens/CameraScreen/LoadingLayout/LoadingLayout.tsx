@@ -44,7 +44,7 @@ const LoadingLayout = ({
           index: 0,
           routes: [{ name: "PrizeScreen", params: { response } }],
         });
-      }, 8000),
+      }, 8000)
     );
 
     // Limpieza de temporizadores al desmontar

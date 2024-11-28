@@ -1,5 +1,6 @@
 import { createStackNavigator, Text, View } from "../libs";
-import { HomeScreen, Screen1, Screen2, Screen3, Screen4 } from "../Screens";
+import { HomeScreen, Screen1, Screen2, Screen3, OpenPackage } from "../Screens";
+
 import { PlayerHeaderStyles } from "../Styles";
 
 const StackHome = createStackNavigator();
@@ -31,10 +32,10 @@ function HomeStack() {
           // headerShown: false,
         }}
       />
+      <StackHome.Screen name="OpenPackage" component={OpenPackage} />
       <StackHome.Screen name="Screen1" component={Screen1} />
       <StackHome.Screen name="Screen2" component={Screen2} />
       <StackHome.Screen name="Screen3" component={Screen3} />
-      <StackHome.Screen name="Screen4" component={Screen4} />
     </StackHome.Navigator>
   );
 }

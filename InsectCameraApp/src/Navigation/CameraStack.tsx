@@ -1,8 +1,12 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import { CameraOn, CameraScreen, ImageCut } from "../Screens";
+import {
+  CameraOn,
+  CameraScreen,
+  ImageCut,
+  PrizeCards,
+  PrizeScreen,
+} from "../Screens";
 import { LoadingLayout } from "../Components";
-import PrizeScreen from "../Screens/PrizeScreen/PrizeScreen";
-import PrizeCards from "../Screens/PrizeScreen/PrizeCards";
 
 export type CameraStackParamList = {
   CameraOn: undefined; // Esta pantalla no recibe parámetros
