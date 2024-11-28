@@ -1,10 +1,9 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { ChatGameScreen, CollectionScreen, GroupScreen } from "../Screens";
-import { Ionicons, View } from "../libs";
+import { Ionicons, View, createBottomTabNavigator } from "../libs";
 import { CameraButtonMenu } from "../Styles";
 import HomeStack from "./HomeStack";
 import theme from "../../config/theme";
-import CaptureStack from "./CatureStack";
+import CameraStack from "./CameraStack";
 
 const Tab = createBottomTabNavigator();
 function TabNavigation() {
@@ -53,7 +52,7 @@ function TabNavigation() {
       />
       <Tab.Screen
         name="Camera"
-        component={CaptureStack}
+        component={CameraStack}
         options={{
           headerShown: false,
           tabBarLabel: "",

@@ -13,7 +13,7 @@ import {
   useEffect,
 } from "../../libs";
 import { useNavigation } from "@react-navigation/native";
-import { RootStackParamList } from "../../Navigation/CatureStack";
+import { CameraStackParamList } from "../../Navigation/CameraStack";
 import { StackNavigationProp } from "@react-navigation/stack";
 
 type ImagePickerResult = {
@@ -22,7 +22,7 @@ type ImagePickerResult = {
   name: string;
 };
 type CameraOnNavigationProp = StackNavigationProp<
-  RootStackParamList,
+  CameraStackParamList,
   "ImageCut"
 >;
 const CameraOn = () => {
@@ -170,6 +170,7 @@ const CameraOn = () => {
   return (
     <View style={ContainerStyles.container}>
       <Button title="Seleccionar imagen" onPress={pickImage} />
+
       {selectedImage && (
         <Image source={{ uri: selectedImage }} style={CameraScreen.image} />
       )}

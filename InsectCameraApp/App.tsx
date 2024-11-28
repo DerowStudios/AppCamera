@@ -10,16 +10,15 @@ export default function App() {
   const [fontsLoaded] = useFonts({
     "Ribeye-Regular": require("./assets/fonts/Ribeye-Regular.ttf"),
   });
-
   useEffect(() => {
     if (fontsLoaded) {
       SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
-
   // Renderiza un contenedor vacío mientras las fuentes cargan
   if (!fontsLoaded) {
     return null;
   }
+
   return <AppNavigation />;
 }

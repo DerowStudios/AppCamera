@@ -1,24 +1,16 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { StatusBar } from "../libs";
-import { LoadingLayout } from "../Components";
-import PrizeScreen from "../Screens/PrizeScreen/PrizeScreen";
+import { NavigationContainer, createStackNavigator, StatusBar } from "../libs";
 import TabNavigation from "./TabNavigation";
-
-export type FunctionalStackParams = {
-  LoadingLayout: { response: string | null };
-  PrizeScreen: { response: string | null };
-};
+import OpenPackage from "../Screens/OpenPackage/OpenPackage";
 
 const AppNavigation = () => {
   const RootStack = createStackNavigator();
+
   return (
     <NavigationContainer>
       <StatusBar barStyle="light-content" />
       <RootStack.Navigator screenOptions={{ headerShown: false }}>
         <RootStack.Screen name="TabNavigation" component={TabNavigation} />
-        <RootStack.Screen name="LoadingLayout" component={LoadingLayout} />
-        <RootStack.Screen name="PrizeScreen" component={PrizeScreen} />
+        <RootStack.Screen name="OpenPackage" component={OpenPackage} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

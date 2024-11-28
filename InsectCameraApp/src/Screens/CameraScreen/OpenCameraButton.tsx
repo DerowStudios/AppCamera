@@ -5,17 +5,20 @@ import { Shadow } from "react-native-shadow-2";
 import { useNavigation } from "@react-navigation/native";
 const OpenCameraButton = (/*{ onPress }*/) => {
   const navigation = useNavigation();
+
   const onPress = async () => {
     const permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
+    const cameraPermission = await ImagePicker.requestCameraPermissionsAsync();
 
-    if (!permissionResult.granted) {
+    if (!permissionResult.granted || !cameraPermission.granted) {
       Alert.alert(
         "Permisos necesarios",
-        "Necesitas otorgar permisos para acceder a tus fotos."
+        "Necesitas otorgar permisos para acceder a tus fotos.",
       );
       return;
     }
+
     navigation.navigate("CameraOn" as never);
   };
   return (

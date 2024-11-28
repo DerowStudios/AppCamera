@@ -1,22 +1,35 @@
-import { Alert, Button, Image, Text, View } from "react-native";
-import { RootStackParamList } from "../../Navigation/CatureStack";
-import { FunctionalStackParams } from "../../Navigation/AppNavigation";
-import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import {
+  Alert,
+  Button,
+  Image,
+  Text,
+  View,
+  StackNavigationProp,
+  useState,
+  RouteProp,
+  CommonActions,
+} from "../../libs";
+import { CameraStackParamList } from "../../Navigation/CameraStack";
+
 import axios from "axios";
 import * as FileSystem from "expo-file-system";
 import * as ImageManipulator from "expo-image-manipulator";
-import { useState } from "react";
 import { CameraScreen, ContainerStyles } from "../../Styles";
-import { StackNavigationProp } from "@react-navigation/stack";
 
-type ImageCutRouteProp = RouteProp<RootStackParamList, "ImageCut">;
+type ImageCutRouteProp = RouteProp<CameraStackParamList, "ImageCut">;
 type CameraOnNavigationProp = StackNavigationProp<
-  FunctionalStackParams,
+  CameraStackParamList,
   "LoadingLayout"
 >;
-const ImageCut = () => {
-  const route = useRoute<ImageCutRouteProp>();
-  const navigate = useNavigation<CameraOnNavigationProp>();
+const ImageCut = ({
+  navigation,
+  route,
+}: {
+  navigation: CameraOnNavigationProp;
+  route: ImageCutRouteProp;
+}) => {
+  // const route = useRoute<ImageCutRouteProp>();
+  // const navigate = useNavigation<CameraOnNavigationProp>();
   const { selectedImage } = route.params;
   // const [predicted, setPredicted] = useState<string | null>(null);
   const [imageDetails, setImageDetails] = useState<any>(null); // Para almacenar las características de la imagen
@@ -37,7 +50,7 @@ const ImageCut = () => {
       // Obtener el tamaño en bytes
       const fileInfo = await FileSystem.getInfoAsync(uri);
       let sizeInBytes = 0;
-      if (!!fileInfo.size) {
+      if (!fileInfo.size) {
         console.log("esta", fileInfo.size);
         sizeInBytes = fileInfo.size / 1024;
       }
@@ -66,6 +79,7 @@ const ImageCut = () => {
       console.error("Error al obtener detalles de la imagen", error);
     }
   };
+
   const uploadImage = async () => {
     if (!selectedImage) {
       Alert.alert("Error", "Primero selecciona o toma una imagen.");
@@ -104,9 +118,23 @@ const ImageCut = () => {
         },
       );
       // const response = predicted;
-      navigate.navigate("LoadingLayout", { response: response.data[0].class });
+
+      // navigate.navigate("LoadingLayout", { response: response.data[0].class });
       // setPredicted(response.data[0].class);
       Alert.alert("Éxito", "Imagen subida correctamente");
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0, // Posición de PrizeScreen en la nueva pila
+
+          routes: [
+            {
+              name: "LoadingLayout",
+              params: { response: response.data[0].class },
+            }, // Reinicia CameraStack
+          ],
+        }),
+      );
+
       console.log("Respuesta del servidor:", response.data);
     } catch (error) {
       Alert.alert("Error", "No se pudo subir la imagen");

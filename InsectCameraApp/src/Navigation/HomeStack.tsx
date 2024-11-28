@@ -1,7 +1,7 @@
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator, Text, View } from "../libs";
 import { HomeScreen, Screen1, Screen2, Screen3, Screen4 } from "../Screens";
-import { Text, View } from "react-native";
 import { PlayerHeaderStyles } from "../Styles";
+
 const StackHome = createStackNavigator();
 
 function HomeStack() {
