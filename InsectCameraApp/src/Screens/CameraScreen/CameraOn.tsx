@@ -11,10 +11,13 @@ import {
   Alert,
   Text,
   useEffect,
+  Ionicons,
+  Pressable,
 } from "../../libs";
 import { useNavigation } from "@react-navigation/native";
 import { CameraStackParamList } from "../../Navigation/CameraStack";
 import { StackNavigationProp } from "@react-navigation/stack";
+import RetryButton from "../../Components/RetryButton/RetryButton";
 
 type ImagePickerResult = {
   uri: string;
@@ -167,38 +170,48 @@ const CameraOn = () => {
       console.error(error);
     }
   };
+  const handleRetry = () => {
+    takePhoto();
+  };
   return (
     <View style={ContainerStyles.container}>
-      <Button title="Seleccionar imagen" onPress={pickImage} />
-
       {selectedImage && (
-        <Image source={{ uri: selectedImage }} style={CameraScreen.image} />
-      )}
-      {imageDetails && (
-        <View style={CameraScreen.detailsContainer}>
-          <Text>
-            Dimensiones: {imageDetails.width}x{imageDetails.height}
-          </Text>
-          <Text>Tamaño: {(imageDetails.sizeInBytes / 1024).toFixed(2)} KB</Text>
-          <Text>
-            Resolución Horizontal: {imageDetails.resolutionX.toFixed(2)} ppi
-          </Text>
-          <Text>
-            Resolución Vertical: {imageDetails.resolutionY.toFixed(2)} ppi
-          </Text>
+        <View>
+          <Button title="Seleccionar imagen" onPress={pickImage} />
+
+          {selectedImage && (
+            <Image source={{ uri: selectedImage }} style={CameraScreen.image} />
+          )}
+          {imageDetails && (
+            <View style={CameraScreen.detailsContainer}>
+              <Text>
+                Dimensiones: {imageDetails.width}x{imageDetails.height}
+              </Text>
+              <Text>
+                Tamaño: {(imageDetails.sizeInBytes / 1024).toFixed(2)} KB
+              </Text>
+              <Text>
+                Resolución Horizontal: {imageDetails.resolutionX.toFixed(2)} ppi
+              </Text>
+              <Text>
+                Resolución Vertical: {imageDetails.resolutionY.toFixed(2)} ppi
+              </Text>
+            </View>
+          )}
+          <Button
+            title="Subir imagen"
+            onPress={uploadImage}
+            disabled={!selectedImage}
+          />
+          {predicted && <Text>{predicted}</Text>}
+          <Button
+            title="Next"
+            onPress={handleNavigation}
+            disabled={!selectedImage}
+          />
         </View>
       )}
-      <Button
-        title="Subir imagen"
-        onPress={uploadImage}
-        disabled={!selectedImage}
-      />
-      {predicted && <Text>{predicted}</Text>}
-      <Button
-        title="Next"
-        onPress={handleNavigation}
-        disabled={!selectedImage}
-      />
+      <RetryButton handler={handleRetry} />
     </View>
   );
 };

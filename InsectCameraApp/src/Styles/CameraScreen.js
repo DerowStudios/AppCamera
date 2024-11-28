@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 const CameraScreen = StyleSheet.create({
   image: {
-    width: 200,
+    width: 260,
     height: 200,
     marginVertical: 20,
   },

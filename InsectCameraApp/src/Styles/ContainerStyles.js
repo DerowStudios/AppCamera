@@ -6,6 +6,10 @@ const ContainerStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  ContainerButton: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
 
 export default ContainerStyles;

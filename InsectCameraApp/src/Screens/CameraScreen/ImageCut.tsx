@@ -15,6 +15,7 @@ import axios from "axios";
 import * as FileSystem from "expo-file-system";
 import * as ImageManipulator from "expo-image-manipulator";
 import { CameraScreen, ContainerStyles } from "../../Styles";
+import RetryButton from "../../Components/RetryButton/RetryButton";
 
 type ImageCutRouteProp = RouteProp<CameraStackParamList, "ImageCut">;
 type CameraOnNavigationProp = StackNavigationProp<
@@ -142,6 +143,9 @@ const ImageCut = ({
     }
   };
 
+  const handleRetry = () => {
+    navigation.navigate("CameraOn");
+  };
   return (
     <View style={ContainerStyles.container}>
       <Text>Esta view es cameracut</Text>
@@ -171,6 +175,7 @@ const ImageCut = ({
           </Text>
         </View>
       )}
+      <RetryButton handler={handleRetry} />
       {/* {predicted && <Text>{predicted}</Text>} */}
     </View>
   );
