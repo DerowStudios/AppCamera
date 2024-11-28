@@ -3,6 +3,8 @@ import InfoButtons from "./InfoButtons";
 import * as ImagePicker from "expo-image-picker";
 import { Shadow } from "react-native-shadow-2";
 import { useNavigation } from "@react-navigation/native";
+import { Ionicons } from "../../libs";
+import theme from "../../../config/theme";
 const OpenCameraButton = (/*{ onPress }*/) => {
   const navigation = useNavigation();
 
@@ -25,14 +27,19 @@ const OpenCameraButton = (/*{ onPress }*/) => {
     <View style={styles.container}>
       <Pressable
         onPress={onPress}
-        style={({ pressed }) => [styles.button, pressed && styles.pressed]}
+        style={({ pressed }) => [
+          styles.button,
+          { justifyContent: "flex-start", alignItems: "center" },
+          pressed && styles.pressed,
+        ]}
       >
-        <Shadow distance={8} startColor={"#00000015"}>
-          <Image
+        {/* <Shadow distance={8} startColor={"#00000015"}> */}
+        {/* <Image
             source={require("../../../assets/camerabutton4.png")}
             style={styles.image}
-          />
-        </Shadow>
+          /> */}
+        <Ionicons name="camera" color={theme.colors.primary} size={200} />
+        {/* </Shadow> */}
       </Pressable>
       <InfoButtons />
     </View>

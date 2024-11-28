@@ -1,6 +1,6 @@
 import { NavigationContainer, createStackNavigator, StatusBar } from "../libs";
 import TabNavigation from "./TabNavigation";
-import OpenPackage from "../Screens/OpenPackage/OpenPackage";
+import PackageStack from "./PackageStack";
 
 const AppNavigation = () => {
   const RootStack = createStackNavigator();
@@ -10,7 +10,7 @@ const AppNavigation = () => {
       <StatusBar barStyle="light-content" />
       <RootStack.Navigator screenOptions={{ headerShown: false }}>
         <RootStack.Screen name="TabNavigation" component={TabNavigation} />
-        <RootStack.Screen name="OpenPackage" component={OpenPackage} />
+        <RootStack.Screen name="OpenPackage" component={PackageStack} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

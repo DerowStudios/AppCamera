@@ -2,16 +2,15 @@ import { createStackNavigator, Text, View } from "../libs";
 import { HomeScreen, Screen1, Screen2, Screen3, OpenPackage } from "../Screens";
 
 import { PlayerHeaderStyles } from "../Styles";
-import PackageStack from "./PackageStack";
 
-const StackHome = createStackNavigator();
+const StackPackage = createStackNavigator();
 
-function HomeStack() {
+function PackageStack() {
   return (
-    <StackHome.Navigator>
-      <StackHome.Screen
+    <StackPackage.Navigator>
+      <StackPackage.Screen
         name="Inicio"
-        component={HomeScreen as any}
+        component={OpenPackage as any}
         options={{
           header: () => (
             <View style={PlayerHeaderStyles.headerContainer}>
@@ -53,11 +52,11 @@ function HomeStack() {
           // headerShown: false,
         }}
       />
-      <StackHome.Screen name="OpenPackage" component={PackageStack} />
-      <StackHome.Screen name="Screen1" component={Screen1} />
-      <StackHome.Screen name="Screen2" component={Screen2} />
-      <StackHome.Screen name="Screen3" component={Screen3} />
-    </StackHome.Navigator>
+
+      <StackPackage.Screen name="Screen1" component={Screen1} />
+      <StackPackage.Screen name="Screen2" component={Screen2} />
+      <StackPackage.Screen name="Screen3" component={Screen3} />
+    </StackPackage.Navigator>
   );
 }
-export default HomeStack;
+export default PackageStack;

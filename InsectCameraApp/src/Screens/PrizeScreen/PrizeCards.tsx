@@ -22,9 +22,15 @@ const PrizeCards = ({
     });
     // navigation.navigate("OpenPackage");
   };
+  const sobres = 4;
+
   return (
     <View style={ContainerStyles.container}>
-      <Text>Has recibido!</Text>
+      <Text style={styles.text}>
+        {sobres > 3 ? "Excelente!" : "Recibiste"}{" "}
+        <Text style={{ color: "green" }}>{sobres}</Text>{" "}
+        {sobres > 1 ? "sobres" : "sobre"}
+      </Text>
 
       <Pressable onPress={handlePress} style={styles.cards}>
         <Text>packete - botton que te regirige a abrir paquetes</Text>
@@ -38,12 +44,18 @@ const styles = StyleSheet.create({
   cards: {
     borderBlockColor: "black",
     padding: 20,
-    backgroundColor: theme.colors.secondary,
+    margin: 20,
+    backgroundColor: theme.colors.gray,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 20,
-    height: 300,
+    height: 320,
     maxWidth: 300,
-    minWidth: 300,
+    minWidth: 160,
+    width: 220,
+  },
+  text: {
+    fontSize: 18,
+    fontFamily: "Ribeye-Regular",
   },
 });

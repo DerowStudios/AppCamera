@@ -44,13 +44,13 @@ function HomeScreen({ navigation }: HomeScreenProps) {
           style={styles.menuButton}
           onPress={() => navigation.navigate("Screen2")}
         >
-          <Text style={styles.menuText}>2</Text>
+          <Text style={styles.menuText}>3</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.menuButton}
+          style={[styles.menuButton, { backgroundColor: "transparent" }]}
           onPress={() => navigation.navigate("Screen3")}
         >
-          <Text style={styles.menuText}>3</Text>
+          <Ionicons name="aperture" color={"orangered"} size={40} />
         </TouchableOpacity>
       </View>
     </View>
