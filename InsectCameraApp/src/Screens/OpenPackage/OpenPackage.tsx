@@ -1,4 +1,5 @@
 import theme from "../../../config/theme";
+import { TitleLayout } from "../../Components";
 import { CameraStackParamList } from "../../Navigation/CameraStack";
 import { ContainerStyles } from "../../Styles";
 import { RouteProp, Text, useEffect, useState, View } from "../../libs";
@@ -51,43 +52,45 @@ const OpenPackage = ({
     };
   }, [navigation]);
   const handleRedirect = () => {
-    navigation.navigate("Inicio");
+    navigation.navigate("Home", { screen: "Inicio" });
   };
 
   return (
-    <View style={ContainerStyles.container}>
-      <View style={styles.list}>
-        <FlatList
-          data={paquetes}
-          renderItem={({ item, index }) => (
-            <Pressable
-              style={[
-                styles.package,
-                {
-                  left: index * 20, // Desplazamiento horizontal para superposición
-                  zIndex: paquetes.length - index, // Control de la superposición
-                },
-              ]}
-              onPress={() => setSelectedPackage(index)}
-            >
-              <Text style={styles.packageText}>{item}</Text>
-            </Pressable>
+    <TitleLayout title="Abrir paquetes" back={true} onPress={handleRedirect}>
+      <View style={ContainerStyles.container}>
+        <View style={styles.list}>
+          <FlatList
+            data={paquetes}
+            renderItem={({ item, index }) => (
+              <Pressable
+                style={[
+                  styles.package,
+                  {
+                    left: index * 20, // Desplazamiento horizontal para superposición
+                    zIndex: paquetes.length - index, // Control de la superposición
+                  },
+                ]}
+                onPress={() => setSelectedPackage(index)}
+              >
+                <Text style={styles.packageText}>{item}</Text>
+              </Pressable>
+            )}
+            keyExtractor={(item, index) => index.toString()}
+            horizontal={true} // Para permitir "amontonamiento" (columnas)
+            showsHorizontalScrollIndicator
+            contentContainerStyle={{ width: paquetes.length * 23 }} // Estilo del contenedor
+          />
+        </View>
+        <View style={styles.cards}>
+          {selectedPackage !== null && (
+            <View style={styles.card}>
+              <Text style={styles.cardData}>{paquetes[selectedPackage]}</Text>
+              <Text style={styles.cardData}>Aca explotaran los paquetes</Text>
+            </View>
           )}
-          keyExtractor={(item, index) => index.toString()}
-          horizontal={true} // Para permitir "amontonamiento" (columnas)
-          showsHorizontalScrollIndicator
-          contentContainerStyle={{ width: paquetes.length * 23 }} // Estilo del contenedor
-        />
+        </View>
       </View>
-      <View style={styles.cards}>
-        {selectedPackage !== null && (
-          <View style={styles.card}>
-            <Text style={styles.cardData}>{paquetes[selectedPackage]}</Text>
-            <Text style={styles.cardData}>Aca explotaran los paquetes</Text>
-          </View>
-        )}
-      </View>
-    </View>
+    </TitleLayout>
   );
 };
 export default OpenPackage;

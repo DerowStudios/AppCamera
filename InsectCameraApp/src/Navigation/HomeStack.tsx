@@ -53,7 +53,11 @@ function HomeStack() {
           // headerShown: false,
         }}
       />
-      <StackHome.Screen name="OpenPackage" component={PackageStack} />
+      <StackHome.Screen
+        name="OpenPackage"
+        component={PackageStack}
+        options={{ headerShown: false }}
+      />
       <StackHome.Screen name="Screen1" component={Screen1} />
       <StackHome.Screen name="Screen2" component={Screen2} />
       <StackHome.Screen name="Screen3" component={Screen3} />

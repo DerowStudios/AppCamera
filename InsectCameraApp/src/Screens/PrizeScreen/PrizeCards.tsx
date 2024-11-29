@@ -18,17 +18,26 @@ const PrizeCards = ({
     Alert.alert("a abrir paquetes");
     navigation.reset({
       index: 0, // Establece el índice a 0 (o el que desees)
-      routes: [{ name: "OpenPackage" }],
+      routes: [
+        {
+          name: "Home",
+          params: {
+            screen: "OpenPackage", // Indica la pantalla dentro de Home
+          },
+        },
+      ],
     });
-    // navigation.navigate("OpenPackage");
   };
   const sobres = 4;
 
   return (
     <View style={ContainerStyles.container}>
+      {sobres > 3 && (
+        <Text style={[styles.text, { color: "green" }]}>Excelente!</Text>
+      )}
       <Text style={styles.text}>
-        {sobres > 3 ? "Excelente!" : "Recibiste"}{" "}
-        <Text style={{ color: "green" }}>{sobres}</Text>{" "}
+        Recibiste
+        <Text style={{ color: "green" }}>{" " + sobres + " "}</Text>
         {sobres > 1 ? "sobres" : "sobre"}
       </Text>
 
