@@ -13,7 +13,7 @@ const OpenPackage = ({
   navigation: any;
   route: ImageCutRouteProp;
 }) => {
-  const [selectedPackage, setSelectedPackage] = useState<number>(0);
+  const [selectedPackage, setSelectedPackage] = useState<number>();
   const paquetes = [
     "Paquete 1",
     "Paquete 2",
@@ -83,6 +83,7 @@ const OpenPackage = ({
         {selectedPackage !== null && (
           <View style={styles.card}>
             <Text style={styles.cardData}>{paquetes[selectedPackage]}</Text>
+            <Text style={styles.cardData}>Aca explotaran los paquetes</Text>
           </View>
         )}
       </View>
@@ -107,8 +108,11 @@ const styles = StyleSheet.create({
     width: 200,
     height: 260,
     backgroundColor: theme.colors.black,
+    justifyContent: "center",
+    alignContent: "center",
   },
   cardData: {
+    textAlign: "center",
     color: "white",
   },
   // listContainer: {
@@ -118,8 +122,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     height: 100,
     width: 280,
-    marginBottom: 40,
-    marginTop: -40,
+    marginBottom: 30,
+    marginTop: -50,
   },
   package: {
     borderWidth: 2,
