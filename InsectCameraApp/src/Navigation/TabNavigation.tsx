@@ -1,16 +1,39 @@
 import { ChatGameScreen, CollectionScreen, GroupScreen } from "../Screens";
-import { Ionicons, View, createBottomTabNavigator } from "../libs";
+import {
+  Ionicons,
+  View,
+  createBottomTabNavigator,
+  useEffect,
+  useState,
+} from "../libs";
 import { CameraButtonMenu } from "../Styles";
 import HomeStack from "./HomeStack";
 import theme from "../../config/theme";
 import CameraStack from "./CameraStack";
+import { Keyboard } from "react-native";
 
 const Tab = createBottomTabNavigator();
 function TabNavigation() {
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
+  useEffect(() => {
+    const showListener = Keyboard.addListener("keyboardDidShow", () =>
+      setKeyboardVisible(true)
+    );
+    const hideListener = Keyboard.addListener("keyboardDidHide", () =>
+      setKeyboardVisible(false)
+    );
+
+    return () => {
+      showListener.remove();
+      hideListener.remove();
+    };
+  }, []);
+
   return (
     <Tab.Navigator
       screenOptions={{
         tabBarStyle: {
+          display: keyboardVisible ? "none" : "flex",
           backgroundColor: theme.colors.secondary,
           height: 80, // Aumenta la altura de la Tab Bar
           paddingTop: 10,

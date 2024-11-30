@@ -7,6 +7,8 @@ import {
   PrizeScreen,
 } from "../Screens";
 import { LoadingLayout } from "../Components";
+import RegisterBug from "../Screens/RegisterBug/RegisterBug";
+import SuccesRegister from "../Screens/RegisterBug/SuccesRegister";
 
 export type CameraStackParamList = {
   CameraOn: undefined; // Esta pantalla no recibe parámetros
@@ -61,6 +63,21 @@ function CameraNavigation() {
         component={PrizeCards}
         options={{
           headerShown: false,
+        }}
+      />
+      <CameraStack.Screen
+        name="RegisterBug"
+        component={RegisterBug}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <CameraStack.Screen
+        name="SuccesRegister"
+        component={SuccesRegister}
+        options={{
+          headerShown: false,
+          presentation: "modal",
         }}
       />
     </CameraStack.Navigator>

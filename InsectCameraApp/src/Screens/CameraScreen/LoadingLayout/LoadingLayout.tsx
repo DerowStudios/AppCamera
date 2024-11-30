@@ -24,7 +24,7 @@ const LoadingLayout = ({
   navigation: CameraOnNavigationProp;
   route: ImageCutRouteProp;
 }) => {
-  const [title, setTitle] = useState<string>("Evaluando Átomos");
+  const [title, setTitle] = useState<string>("Evaluando Peso atomico");
   const { response } = route.params || {};
   const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
 
@@ -36,15 +36,14 @@ const LoadingLayout = ({
 
     // Agregar temporizadores al array para su limpieza
     timeoutsRef.current.push(
-      setTimeout(() => setTitle("Inspeccionando Snap!"), 2000),
-      setTimeout(() => setTitle("Observando detalles"), 4000),
-      setTimeout(() => setTitle("Preparando Poleenizador"), 6000),
+      setTimeout(() => setTitle("Calibrando Microscopios!"), 2000),
+      setTimeout(() => setTitle("Entrenando Cientificos"), 4000),
       setTimeout(() => {
         navigation.reset({
           index: 0,
           routes: [{ name: "PrizeScreen", params: { response } }],
         });
-      }, 8000)
+      }, 6000)
     );
 
     // Limpieza de temporizadores al desmontar

@@ -12,3 +12,4 @@ export { default as ImageCut } from "./CameraScreen/ImageCut";
 export { default as OpenPackage } from "./OpenPackage/OpenPackage";
 export { default as PrizeScreen } from "./PrizeScreen/PrizeScreen";
 export { default as PrizeCards } from "./PrizeScreen/PrizeCards";
+export { default as PackageStack } from "../Navigation/PackageStack";

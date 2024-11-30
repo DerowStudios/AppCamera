@@ -84,7 +84,9 @@ const OpenPackage = ({
         <View style={styles.cards}>
           {selectedPackage !== null && (
             <View style={styles.card}>
-              <Text style={styles.cardData}>{paquetes[selectedPackage]}</Text>
+              <Text style={styles.cardData}>
+                {paquetes[Number(selectedPackage)]}
+              </Text>
               <Text style={styles.cardData}>Aca explotaran los paquetes</Text>
             </View>
           )}

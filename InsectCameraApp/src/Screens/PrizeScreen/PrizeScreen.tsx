@@ -23,6 +23,7 @@ const PrizeScreen = ({
     Alert.alert("Prize", "You got a prize!");
   };
   const handleRegister = () => {
+    navigation.navigate("RegisterBug");
     Alert.alert("Register", "Register a bug!");
   };
   return (

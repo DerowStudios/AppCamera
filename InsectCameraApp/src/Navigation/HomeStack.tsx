@@ -1,8 +1,12 @@
 import { createStackNavigator, Text, View } from "../libs";
-import { HomeScreen, Screen1, Screen2, Screen3, OpenPackage } from "../Screens";
-
+import {
+  HomeScreen,
+  Screen1,
+  Screen2,
+  Screen3,
+  PackageStack,
+} from "../Screens";
 import { PlayerHeaderStyles } from "../Styles";
-import PackageStack from "./PackageStack";
 
 const StackHome = createStackNavigator();
 
