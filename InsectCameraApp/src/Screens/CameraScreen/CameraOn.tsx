@@ -59,7 +59,7 @@ const CameraOn = () => {
     if (!permissionResult.granted) {
       Alert.alert(
         "Permisos necesarios",
-        "Necesitas otorgar permisos para acceder a la cámara."
+        "Necesitas otorgar permisos para acceder a la cámara.",
       );
       return;
     }
@@ -86,7 +86,7 @@ const CameraOn = () => {
       const { width, height } = await ImageManipulator.manipulateAsync(
         uri,
         [],
-        {}
+        {},
       );
 
       // Obtener el tamaño en bytes
@@ -138,7 +138,7 @@ const CameraOn = () => {
       [{ resize: { width: 130, height: 224 } }],
       {
         format: ImageManipulator.SaveFormat.JPEG,
-      }
+      },
     );
 
     showImageDetails(resizedImage.uri);
@@ -158,7 +158,7 @@ const CameraOn = () => {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-        }
+        },
       );
       setPredicted(response.data[0].class);
       Alert.alert("Éxito", "Imagen subida correctamente");
@@ -210,6 +210,7 @@ const CameraOn = () => {
         </View>
       )}
       <RetryButton handler={handleRetry} />
+      <Text style={{ fontWeight: "bold" }}>Retry Camera</Text>
     </View>
   );
 };

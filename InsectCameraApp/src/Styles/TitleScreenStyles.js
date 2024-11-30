@@ -26,6 +26,7 @@ const TitleScreenStyles = StyleSheet.create({
   },
   IconClose: {
     marginLeft: "auto",
+    paddingBottom: 12,
   },
   IconNext: {
     width: 50,

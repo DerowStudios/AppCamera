@@ -34,6 +34,7 @@ const ImageCut = ({
   // const route = useRoute<ImageCutRouteProp>();
   // const navigate = useNavigation<CameraOnNavigationProp>();
   const { selectedImage } = route.params;
+  const [secureSend, setSecureSend] = useState(true);
   // const [predicted, setPredicted] = useState<string | null>(null);
   const [imageDetails, setImageDetails] = useState<any>(null); // Para almacenar las características de la imagen
   type ImagePickerResult = {
@@ -47,7 +48,7 @@ const ImageCut = ({
       const { width, height } = await ImageManipulator.manipulateAsync(
         uri,
         [],
-        {}
+        {},
       );
 
       // Obtener el tamaño en bytes
@@ -84,6 +85,7 @@ const ImageCut = ({
   };
 
   const uploadImage = async () => {
+    setSecureSend(false);
     if (!selectedImage) {
       Alert.alert("Error", "Primero selecciona o toma una imagen.");
       return;
@@ -98,7 +100,7 @@ const ImageCut = ({
       [{ resize: { width: 130, height: 224 } }],
       {
         format: ImageManipulator.SaveFormat.JPEG,
-      }
+      },
     );
 
     showImageDetails(resizedImage.uri);
@@ -118,7 +120,7 @@ const ImageCut = ({
           headers: {
             "Content-Type": "multipart/form-data",
           },
-        }
+        },
       );
       // const response = predicted;
 
@@ -135,7 +137,7 @@ const ImageCut = ({
               params: { response: response.data[0].class },
             }, // Reinicia CameraStack
           ],
-        })
+        }),
       );
 
       console.log("Respuesta del servidor:", response.data);
@@ -146,7 +148,10 @@ const ImageCut = ({
   };
 
   const handleRetry = () => {
-    navigation.navigate("CameraOn");
+    if (secureSend) {
+      Alert.alert("anduvo.");
+      navigation.goBack();
+    }
   };
   return (
     <View style={ContainerStyles.container}>

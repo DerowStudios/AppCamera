@@ -14,7 +14,7 @@ const SuccesRegister = ({ navigation }) => {
       onRequestClose={() => setModalVisible(false)} // Acción al cerrar
     >
       <TitleLayout
-        title={"Registrado Exitosamente!"}
+        title={"Registrado con exito!"}
         close={true}
         onPress={() => {
           setModalVisible(false);
