@@ -22,14 +22,12 @@ const SuccesRegister = ({ navigation }) => {
         }}
       >
         <View style={[ContainerStyles.container, {}]}>
-          <View style={{ position: "absolute" }}>
-            <Text style={{ height: 100 }}>
-              succes regiseter Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Quaerat totam rem qui sed labore. Voluptatem
-              fuga facere id necessitatibus, corrupti sed, repellat ipsum magni
-              cum corporis praesentium, dolores doloremque at?
-            </Text>
-          </View>
+          <Text style={{ height: 100 }}>
+            succes regiseter Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Quaerat totam rem qui sed labore. Voluptatem fuga facere id
+            necessitatibus, corrupti sed, repellat ipsum magni cum corporis
+            praesentium, dolores doloremque at?
+          </Text>
         </View>
       </TitleLayout>
     </Modal>
