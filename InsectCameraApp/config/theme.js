@@ -9,6 +9,7 @@ const theme = {
     white: "#FFFFFF",
     black: "#000000",
     gray: "#858585",
+    grayLight: "#e0e0e0",
   },
   fontSizes: {
     small: 12,

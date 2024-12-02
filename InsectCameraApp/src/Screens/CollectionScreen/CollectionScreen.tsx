@@ -1,8 +1,10 @@
+import theme from "../../../config/theme";
+import { TitleLayout } from "../../Components";
 import { Ionicons } from "../../libs";
-import { ContainerStyles } from "../../Styles";
-import { View, FlatList, Text, StyleSheet } from "react-native";
+import { ContainerStyles, TitleScreenStyles } from "../../Styles";
+import { View, FlatList, Text, StyleSheet, TextInput } from "react-native";
 
-const MyComponent = () => {
+const MyComponent = ({ navigation }) => {
   // Datos principales: Cada elemento contiene una lista de elementos secundarios
   const data = [
     { id: "1", items: ["01", "02", "03", "04", "05"] },
@@ -46,16 +48,77 @@ const MyComponent = () => {
   );
 
   return (
-    <FlatList
-      data={data}
-      renderItem={renderOuterItem}
-      keyExtractor={(item) => item.id}
-      showsVerticalScrollIndicator={false}
-    />
+    <View style={[TitleScreenStyles.container, { marginTop: 10 }]}>
+      <Text style={[styles.title, { marginBottom: -10 }]}> Entomoteca </Text>
+      <View>
+        <TextInput
+          placeholder="Search"
+          style={{
+            flexGrow: 1,
+            padding: 10,
+            borderRadius: 10,
+            borderWidth: 1.5,
+          }}
+        />
+      </View>
+      <View
+        style={{
+          flexGrow: 1,
+          flexDirection: "row",
+          gap: 5,
+          marginTop: -14,
+          marginBottom: -14,
+        }}
+      >
+        <Text style={styles.buttonsPagination}>1</Text>
+        <Text
+          style={[
+            styles.buttonsPagination,
+            { backgroundColor: theme.colors.textSecondary },
+          ]}
+        >
+          2
+        </Text>
+        <Text
+          style={[
+            styles.buttonsPagination,
+            { backgroundColor: theme.colors.textSecondary },
+          ]}
+        >
+          3
+        </Text>
+        <Text
+          style={[
+            styles.buttonsPagination,
+            { backgroundColor: theme.colors.grayLight },
+          ]}
+        >
+          4
+        </Text>
+        <View
+          style={{
+            flexGrow: 1,
+            justifyContent: "flex-end",
+            alignItems: "flex-end",
+          }}
+        >
+          <Text style={{ fontFamily: "Ribeye-Regular", fontSize: 20 }}>
+            00%
+          </Text>
+        </View>
+      </View>
+      <FlatList
+        data={data}
+        renderItem={renderOuterItem}
+        keyExtractor={(item) => item.id}
+        showsVerticalScrollIndicator={false}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  title: { fontFamily: "Ribeye-Regular", fontSize: 24, textAlign: "center" },
   outerItem: {
     marginBottom: 20,
   },
@@ -63,6 +126,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 10,
+  },
+  buttonsPagination: {
+    textAlign: "center",
+    textAlignVertical: "center",
+    color: "white",
+    fontFamily: "Ribeye-Regular",
+    borderRadius: 5,
+    width: 26,
+    height: 26,
+    backgroundColor: theme.colors.primary,
   },
   innerItem: {
     width: 80,
