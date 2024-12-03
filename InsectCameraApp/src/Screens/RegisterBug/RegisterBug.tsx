@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, View, Alert } from "react-native";
+import { Text, TextInput, View, Alert } from "react-native";
 import { TitleLayout } from "../../Components";
 import { ContainerStyles } from "../../Styles";
 import { useState } from "react";
@@ -49,7 +49,7 @@ const RegisterBug = ({ navigations }) => {
             onPress={() =>
               Alert.alert(
                 "nombre del insecto",
-                "Con que nombre conoces a este insecto?",
+                "Con que nombre conoces a este insecto?"
               )
             }
           ></Ionicons>
@@ -81,7 +81,7 @@ const RegisterBug = ({ navigations }) => {
             onPress={() =>
               Alert.alert(
                 "¿En qué país y región?", // Título
-                "Por favor, especifica el país y la región donde ocurrió el avistamiento.",
+                "Por favor, especifica el país y la región donde ocurrió el avistamiento."
               )
             }
           ></Ionicons>
@@ -96,23 +96,3 @@ const RegisterBug = ({ navigations }) => {
 };
 
 export default RegisterBug;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center", // Centra verticalmente cuando el teclado no está visible
-    alignItems: "center", // Centra horizontalmente
-  },
-  title: {
-    fontSize: 18,
-    marginBottom: 20,
-  },
-  input: {
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
-    paddingHorizontal: 10,
-    width: "80%",
-    borderRadius: 5,
-  },
-});

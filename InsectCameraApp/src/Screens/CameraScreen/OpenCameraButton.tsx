@@ -1,7 +1,7 @@
-import { Pressable, Image, StyleSheet, Alert, View } from "react-native";
+import { Pressable, StyleSheet, Alert, View } from "react-native";
 import InfoButtons from "./InfoButtons";
 import * as ImagePicker from "expo-image-picker";
-import { Shadow } from "react-native-shadow-2";
+
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "../../libs";
 import theme from "../../../config/theme";

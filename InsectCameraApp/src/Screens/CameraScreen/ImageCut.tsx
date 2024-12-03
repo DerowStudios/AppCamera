@@ -48,7 +48,7 @@ const ImageCut = ({
       const { width, height } = await ImageManipulator.manipulateAsync(
         uri,
         [],
-        {},
+        {}
       );
 
       // Obtener el tamaño en bytes
@@ -100,7 +100,7 @@ const ImageCut = ({
       [{ resize: { width: 130, height: 224 } }],
       {
         format: ImageManipulator.SaveFormat.JPEG,
-      },
+      }
     );
 
     showImageDetails(resizedImage.uri);
@@ -120,7 +120,7 @@ const ImageCut = ({
           headers: {
             "Content-Type": "multipart/form-data",
           },
-        },
+        }
       );
       // const response = predicted;
 
@@ -137,7 +137,7 @@ const ImageCut = ({
               params: { response: response.data[0].class },
             }, // Reinicia CameraStack
           ],
-        }),
+        })
       );
 
       console.log("Respuesta del servidor:", response.data);

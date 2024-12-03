@@ -11,16 +11,17 @@ import HomeStack from "./HomeStack";
 import theme from "../../config/theme";
 import CameraStack from "./CameraStack";
 import { Keyboard } from "react-native";
+import CollectionNav from "./CollectionStack";
 
 const Tab = createBottomTabNavigator();
 function TabNavigation() {
   const [keyboardVisible, setKeyboardVisible] = useState(false);
   useEffect(() => {
     const showListener = Keyboard.addListener("keyboardDidShow", () =>
-      setKeyboardVisible(true)
+      setKeyboardVisible(true),
     );
     const hideListener = Keyboard.addListener("keyboardDidHide", () =>
-      setKeyboardVisible(false)
+      setKeyboardVisible(false),
     );
 
     return () => {
@@ -64,7 +65,7 @@ function TabNavigation() {
       />
       <Tab.Screen
         name="Collections"
-        component={CollectionScreen}
+        component={CollectionNav}
         options={{
           headerShown: false,
           tabBarLabel: "",
@@ -81,7 +82,7 @@ function TabNavigation() {
           tabBarLabel: "",
           tabBarIcon: ({ color }) => (
             <View style={CameraButtonMenu.cameraButtonContainer}>
-              <Ionicons name="camera" size={54} color={color} />
+              <Ionicons name="camera" size={50} color={color} />
             </View>
           ),
         }}
@@ -93,7 +94,7 @@ function TabNavigation() {
           headerShown: false,
           tabBarLabel: "",
           tabBarIcon: ({ color }) => (
-            <Ionicons name="home" size={24} color={color} />
+            <Ionicons name="people" size={24} color={color} />
           ),
         }}
       />

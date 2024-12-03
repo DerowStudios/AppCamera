@@ -53,6 +53,7 @@ const TitleLayout: React.FC<TitleLabelProps> = ({
           style={[
             TitleScreenStyles.texto,
             standar && TitleScreenStyles.standarText,
+            // { marginTop: -30 },
           ]}
         >
           {title}

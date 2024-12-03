@@ -2,7 +2,7 @@ import theme from "../../../config/theme";
 import { CameraStackParamList } from "../../Navigation/CameraStack";
 import { ContainerStyles } from "../../Styles";
 import { RouteProp, Text, useEffect, View } from "../../libs";
-import { BackHandler, Pressable, StyleSheet } from "react-native";
+import { BackHandler, StyleSheet } from "react-native";
 
 type ImageCutRouteProp = RouteProp<CameraStackParamList, "LoadingLayout">;
 
