@@ -1,6 +1,5 @@
-import { Text, View, ScrollView, Alert, Pressable } from "react-native";
+import { Text, View, ScrollView, Pressable } from "react-native";
 import { TitleLayout } from "../../Components";
-import theme from "../../../config/theme";
 import { Ionicons } from "../../libs";
 
 const CardInformation = ({ navigation }) => {
@@ -8,12 +7,12 @@ const CardInformation = ({ navigation }) => {
     <TitleLayout
       title="Family Name"
       back={true}
+      reduceTitle={true}
       onPress={() => navigation.goBack()}
     >
       <ScrollView
         contentContainerStyle={{
           alignItems: "center",
-          paddingVertical: 20,
           gap: 30,
         }}
         showsVerticalScrollIndicator={false} // Oculta la barra de scroll si no la necesitas
@@ -78,7 +77,7 @@ const CardInformation = ({ navigation }) => {
             }}
           >
             <Text style={{ textAlign: "center", marginLeft: 16, flex: 1 }}>
-              Funcion Ecologica
+              Misión Ecológica
             </Text>
             <Ionicons name="leaf" color={"green"} size={20}></Ionicons>
           </View>

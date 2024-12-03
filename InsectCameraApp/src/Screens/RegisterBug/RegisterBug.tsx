@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Ionicons } from "../../libs";
 import NormalButton from "../../Components/NormalButton/NormalButton";
 
-const RegisterBug = ({ navigations }) => {
+const RegisterBug = ({ navigation }) => {
   const [insecto, setInsecto] = useState("");
   const [region, setRegion] = useState("");
   return (
@@ -49,7 +49,7 @@ const RegisterBug = ({ navigations }) => {
             onPress={() =>
               Alert.alert(
                 "nombre del insecto",
-                "Con que nombre conoces a este insecto?"
+                "Con que nombre conoces a este insecto?",
               )
             }
           ></Ionicons>
@@ -81,7 +81,7 @@ const RegisterBug = ({ navigations }) => {
             onPress={() =>
               Alert.alert(
                 "¿En qué país y región?", // Título
-                "Por favor, especifica el país y la región donde ocurrió el avistamiento."
+                "Por favor, especifica el país y la región donde ocurrió el avistamiento.",
               )
             }
           ></Ionicons>

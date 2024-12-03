@@ -18,10 +18,10 @@ function TabNavigation() {
   const [keyboardVisible, setKeyboardVisible] = useState(false);
   useEffect(() => {
     const showListener = Keyboard.addListener("keyboardDidShow", () =>
-      setKeyboardVisible(true),
+      setKeyboardVisible(true)
     );
     const hideListener = Keyboard.addListener("keyboardDidHide", () =>
-      setKeyboardVisible(false),
+      setKeyboardVisible(false)
     );
 
     return () => {

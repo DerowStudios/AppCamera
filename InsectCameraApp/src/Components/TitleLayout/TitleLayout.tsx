@@ -8,6 +8,7 @@ interface TitleLabelProps {
   next?: boolean;
   close?: boolean;
   standar?: boolean;
+  reduceTitle?: boolean;
   onPress?: () => void;
 }
 
@@ -18,6 +19,7 @@ const TitleLayout: React.FC<TitleLabelProps> = ({
   back,
   next,
   close,
+  reduceTitle = false,
   onPress = () => {
     Alert.alert("apretaste");
   },
@@ -53,7 +55,7 @@ const TitleLayout: React.FC<TitleLabelProps> = ({
           style={[
             TitleScreenStyles.texto,
             standar && TitleScreenStyles.standarText,
-            // { marginTop: -30 },
+            reduceTitle && { marginTop: -30 },
           ]}
         >
           {title}
