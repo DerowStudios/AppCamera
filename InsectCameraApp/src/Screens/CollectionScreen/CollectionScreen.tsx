@@ -1,23 +1,62 @@
 import theme from "../../../config/theme";
-import { TitleLayout } from "../../Components";
 import { Ionicons } from "../../libs";
-import { ContainerStyles, TitleScreenStyles } from "../../Styles";
-import { View, FlatList, Text, StyleSheet, TextInput } from "react-native";
+import { TitleScreenStyles } from "../../Styles";
+import {
+  View,
+  FlatList,
+  Text,
+  StyleSheet,
+  TextInput,
+  Button,
+  Pressable,
+  Alert,
+} from "react-native";
 
 const MyComponent = ({ navigation }) => {
   // Datos principales: Cada elemento contiene una lista de elementos secundarios
   const data = [
-    { id: "1", items: ["01", "02", "03", "04", "05"] },
-    { id: "2", items: ["06", "07", "08"] },
-    { id: "3", items: ["08", "09", "10", "11", "12"] },
+    { id: "1", items: ["01", "02", "03", "04", "05", "T00"] },
+    { id: "2", items: ["06", "07", "08", "T00"] },
+    { id: "3", items: ["08", "09", "10", "11", "12", "T00"] },
   ];
 
   // Renderizar los elementos secundarios dentro de cada sección
-  const renderInnerItem = ({ item }) => (
-    <View style={styles.innerItem}>
-      <Text style={styles.text}>{item}</Text>
-    </View>
-  );
+  const renderInnerItem = ({ item }) =>
+    item === "T00" ? (
+      <View
+        style={{
+          alignItems: "center",
+          justifyContent: "center",
+          maxWidth: 110,
+          height: 120,
+          marginHorizontal: 20,
+        }}
+      >
+        <View style={{ flexDirection: "row", maxWidth: 100 }}>
+          <Ionicons name="star" size={20} color={"#e0e0e0"}></Ionicons>
+          <Ionicons name="star" size={20} color={"#e0e0e0"}></Ionicons>
+          <Ionicons name="star" size={20} color={"#e0e0e0"}></Ionicons>
+        </View>
+        <Ionicons name="trophy" size={56} color={"#e0e0e0"}></Ionicons>
+        <Pressable onPress={() => Alert.alert("Reclamaste")}>
+          <Text
+            style={{
+              padding: 8,
+              backgroundColor: "orange",
+              borderRadius: 10,
+              fontFamily: "Ribeye-Regular",
+              color: "white",
+            }}
+          >
+            RECLAMAR
+          </Text>
+        </Pressable>
+      </View>
+    ) : (
+      <View style={styles.innerItem}>
+        <Text style={styles.text}>{item}</Text>
+      </View>
+    );
 
   // Renderizar cada sección con su `FlatList` interna
   const renderOuterItem = ({ item }) => (
@@ -30,20 +69,6 @@ const MyComponent = ({ navigation }) => {
         horizontal
         showsHorizontalScrollIndicator={false}
       />
-      <View
-        style={{
-          alignItems: "center",
-          justifyContent: "center",
-          maxWidth: 100,
-        }}
-      >
-        <View style={{ flexDirection: "row", maxWidth: 100 }}>
-          <Ionicons name="star" size={24} color={"#e0e0e0"}></Ionicons>
-          <Ionicons name="star" size={24} color={"#e0e0e0"}></Ionicons>
-          <Ionicons name="star" size={24} color={"#e0e0e0"}></Ionicons>
-        </View>
-        <Ionicons name="trophy" size={64}></Ionicons>
-      </View>
     </View>
   );
 
@@ -138,8 +163,8 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.primary,
   },
   innerItem: {
-    width: 80,
-    height: 80,
+    width: 100,
+    height: 126,
     backgroundColor: "#e0e0e0",
     justifyContent: "center",
     alignItems: "center",
@@ -147,8 +172,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   text: {
-    fontSize: 16,
-    color: "#333",
+    fontFamily: "Ribeye-Regular",
+    fontSize: 20,
+    color: "white",
   },
 });
 

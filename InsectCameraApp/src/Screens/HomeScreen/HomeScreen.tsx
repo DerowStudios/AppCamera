@@ -3,6 +3,7 @@ import { ContainerStyles } from "../../Styles";
 
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Ionicons } from "../../libs";
+import theme from "../../../config/theme";
 // Crear el stack navigator y asociarlo con el tipo RootStackParamList
 // const Stack = createStackNavigator<RootStackParamList>();
 
@@ -34,18 +35,25 @@ function HomeScreen({ navigation }: HomeScreenProps) {
           <Ionicons name="globe" color={"green"} size={40} />
         </TouchableOpacity>
         <TouchableOpacity
+          style={
+            (styles.menuButton,
+            {
+              backgroundColor: "transparent",
+              marginLeft: 6,
+              marginVertical: 10,
+            })
+          }
+          onPress={() => navigation.navigate("Screen2")}
+        >
+          <Ionicons name="storefront" color={"red"} size={38} />
+        </TouchableOpacity>
+        <TouchableOpacity
           style={[styles.menuButton, { backgroundColor: "transparent" }]}
           onPress={() => navigation.navigate("OpenPackage")}
         >
-          <Ionicons name="gift" color={"red"} size={40} />
+          <Ionicons name="gift" color={theme.colors.secondary} size={40} />
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.menuButton}
-          onPress={() => navigation.navigate("Screen2")}
-        >
-          <Text style={styles.menuText}>3</Text>
-        </TouchableOpacity>
         <TouchableOpacity
           style={[styles.menuButton, { backgroundColor: "transparent" }]}
           onPress={() => navigation.navigate("Screen3")}
