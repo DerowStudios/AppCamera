@@ -20,6 +20,7 @@ const OneCard = () => {
             borderRadius: 50,
             backgroundColor: "rgba(217, 217, 217, 0.5)",
             color: "white",
+            fontSize: 18,
           }}
         >
           00
@@ -35,14 +36,14 @@ const OneCard = () => {
       >
         <Text
           style={{
-            fontSize: 18,
+            fontSize: 20,
             maxWidth: 150,
             color: "white",
             textAlign: "center",
             fontFamily: "Ribeye-Regular",
           }}
         >
-          Abeja Obrera Común
+          Abeja Obrera
         </Text>
         <View style={{ flexDirection: "row", gap: 6 }}>
           <Ionicons
@@ -85,7 +86,10 @@ const styles = StyleSheet.create({
     overflow: "hidden", // Necesario para que el borde redondeado funcione con la imagen
   },
   imageBackground: {
-    borderRadius: 5, // Aplica el borde redondeado a la imagen
+    width: 268,
+    height: 349,
+    resizeMode: "cover",
+    borderRadius: 6, // Aplica el borde redondeado a la imagen
   },
   content: {
     flex: 1,
