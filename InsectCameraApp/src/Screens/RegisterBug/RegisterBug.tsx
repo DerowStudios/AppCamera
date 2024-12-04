@@ -49,7 +49,7 @@ const RegisterBug = ({ navigation }) => {
             onPress={() =>
               Alert.alert(
                 "nombre del insecto",
-                "Con que nombre conoces a este insecto?",
+                "Con que nombre conoces a este insecto?"
               )
             }
           ></Ionicons>
@@ -81,7 +81,7 @@ const RegisterBug = ({ navigation }) => {
             onPress={() =>
               Alert.alert(
                 "¿En qué país y región?", // Título
-                "Por favor, especifica el país y la región donde ocurrió el avistamiento.",
+                "Por favor, especifica el país y la región donde ocurrió el avistamiento."
               )
             }
           ></Ionicons>

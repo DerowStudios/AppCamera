@@ -1,6 +1,7 @@
 import { Text, View, ScrollView, Pressable } from "react-native";
 import { TitleLayout } from "../../Components";
 import { Ionicons } from "../../libs";
+import OneCard from "../../Components/Card/OneCard";
 
 const CardInformation = ({ navigation }) => {
   return (
@@ -23,11 +24,11 @@ const CardInformation = ({ navigation }) => {
             alignItems: "center",
             width: "100%",
             height: 400,
-            backgroundColor: "green",
+
             borderRadius: 10,
           }}
         >
-          <Text>Card View</Text>
+          <OneCard />
         </View>
         <View
           style={{
