@@ -182,7 +182,6 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 18,
-
     fontFamily: "Ribeye-Regular",
   },
   buttonsPagination: {
@@ -202,7 +201,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,
-    marginHorizontal: 5,
+    marginHorizontal: 10,
   },
   text: {
     fontFamily: "Ribeye-Regular",
@@ -210,8 +209,8 @@ const styles = StyleSheet.create({
     color: "white",
   },
   image: {
-    width: 150, // Ajusta al tamaño del PNG
-    height: 150,
+    width: 170, // Ajusta al tamaño del PNG
+    height: 130,
     position: "absolute", // Permite superponer
     tintColor: "#e0e0e0",
     zIndex: 1,
