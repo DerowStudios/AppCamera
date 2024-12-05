@@ -16,7 +16,7 @@ const MyComponent = ({ navigation }) => {
   const data = [
     {
       id: "1",
-      items: ["01", "02", "03", "04", "05", "T00"],
+      items: ["00", "01", "02", "03", "04", "05", "T00"],
       name: "Apis Melifera",
     },
     { id: "2", items: ["06", "07", "08", "T00"], name: "Bombus Terrestris" },
@@ -40,14 +40,14 @@ const MyComponent = ({ navigation }) => {
           marginTop: 6,
         }}
       >
-        <View style={{ flexDirection: "row", maxWidth: 100 }}>
+        <View style={{ flexDirection: "row", maxWidth: 100, marginTop: 80 }}>
           <Ionicons name="star" size={20} color={"#e0e0e0"}></Ionicons>
           <Ionicons name="star" size={20} color={"#e0e0e0"}></Ionicons>
           <Ionicons name="star" size={20} color={"#e0e0e0"}></Ionicons>
         </View>
         <Ionicons
           name="trophy"
-          size={56}
+          size={84}
           color={"#e0e0e0"}
           style={{ marginBottom: 8 }}
         ></Ionicons>
@@ -78,7 +78,7 @@ const MyComponent = ({ navigation }) => {
             name="information-circle"
             style={[
               InfoButtonStyles.IconImage,
-              { position: "absolute", left: 16, top: 10, color: "#2196F3" },
+              { position: "absolute", left: 42, top: 50, color: "#2196F3" },
             ]}
           />
         </Pressable>
@@ -190,8 +190,8 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.primary,
   },
   innerItem: {
-    width: 100,
-    height: 126,
+    width: 160,
+    height: 200,
     backgroundColor: "#e0e0e0",
     justifyContent: "center",
     alignItems: "center",

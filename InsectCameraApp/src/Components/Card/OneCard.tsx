@@ -1,4 +1,4 @@
-import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import { ImageBackground, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "../../libs";
 import bee from "./bee.png";
 
