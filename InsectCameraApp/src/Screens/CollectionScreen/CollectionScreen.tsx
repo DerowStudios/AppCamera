@@ -9,6 +9,7 @@ import {
   TextInput,
   Pressable,
   Alert,
+  Image,
 } from "react-native";
 
 const MyComponent = ({ navigation }) => {
@@ -35,8 +36,8 @@ const MyComponent = ({ navigation }) => {
           alignItems: "center",
           justifyContent: "center",
           maxWidth: 110,
-          height: 120,
-          marginHorizontal: 20,
+          height: 150,
+          marginHorizontal: 60,
           marginTop: 6,
         }}
       >
@@ -67,7 +68,13 @@ const MyComponent = ({ navigation }) => {
       </View>
     ) : (
       <View style={styles.innerItem}>
-        <Text style={styles.text}>{item}</Text>
+        <Text style={[styles.text, { zIndex: 100, marginLeft: 6 }]}>
+          {item}
+        </Text>
+        <Image
+          source={require("./bombus.png")} // Ruta de tu imagen PNG
+          style={styles.image}
+        />
         <Pressable
           onPress={() => {
             Alert.alert("redirect Info", item);
@@ -78,7 +85,7 @@ const MyComponent = ({ navigation }) => {
             name="information-circle"
             style={[
               InfoButtonStyles.IconImage,
-              { position: "absolute", left: 42, top: 50, color: "#2196F3" },
+              { position: "absolute", left: 42, top: 44, color: "#2196F3" },
             ]}
           />
         </Pressable>
@@ -118,7 +125,6 @@ const MyComponent = ({ navigation }) => {
           flexGrow: 1,
           flexDirection: "row",
           gap: 5,
-          marginTop: -14,
           marginBottom: -14,
         }}
       >
@@ -176,7 +182,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 18,
-    marginBottom: 20,
+
     fontFamily: "Ribeye-Regular",
   },
   buttonsPagination: {
@@ -192,7 +198,7 @@ const styles = StyleSheet.create({
   innerItem: {
     width: 160,
     height: 200,
-    backgroundColor: "#e0e0e0",
+    // backgroundColor: "#e0e0e0",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,
@@ -202,6 +208,13 @@ const styles = StyleSheet.create({
     fontFamily: "Ribeye-Regular",
     fontSize: 20,
     color: "white",
+  },
+  image: {
+    width: 150, // Ajusta al tamaño del PNG
+    height: 150,
+    position: "absolute", // Permite superponer
+    tintColor: "#e0e0e0",
+    zIndex: 1,
   },
 });
 
